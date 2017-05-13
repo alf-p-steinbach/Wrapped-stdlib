@@ -11,7 +11,7 @@
 namespace stdlib{ namespace impl{ namespace windows_console_io{
 
     namespace ascii {
-        char const      del                     = '\x8F';
+        char const      del                     = '\x7F';
     }  // namespace ascii
 
     //char const      error_byte_char             = ascii::del;
