@@ -37,7 +37,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
 
         static auto is_console( int stream_id )
             -> bool
-        { return _isatty( stream_id ); }
+        { return !!_isatty( stream_id ); }
 
         ~Envelope()
         {

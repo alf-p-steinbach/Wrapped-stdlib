@@ -57,16 +57,18 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         static constexpr Size buffer_size = 8;
         using Base = basic_streambuf<Char>;
         using Traits = typename Base::traits_type;
+        using typename Base::char_type;
+        using typename Base::int_type;
 
         Char    buffer_[buffer_size];
 
         Console_output_buffer_( Console_output_buffer_ const& ) = delete;
 
-        auto writebuf_start() const     -> char_type*       { return pbase(); }
-        auto writebuf_beyond() const    -> char_type*       { return epptr(); }
-        auto write_position() const     -> char_type*       { return pptr(); }
+        auto writebuf_start() const     -> char_type*   { return Base::pbase(); }
+        auto writebuf_beyond() const    -> char_type*   { return Base::epptr(); }
+        auto write_position() const     -> char_type*   { return Base::pptr(); }
 
-        void advance_write_position( int const n )          { pbump( n ); }
+        void advance_write_position( int const n )      { Base::pbump( n ); }
 
     protected:
         auto flush( int const n_extra = 0 )
@@ -79,7 +81,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
             {
                 return false;
             }
-            setp( p_start, p_start, p_start + (buffer_size - 1) );
+            Base::setp( p_start, p_start + (buffer_size - 1) );
             return true;
         }
 
@@ -106,7 +108,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         Console_output_buffer_()
         {
             auto const buffer_beyond = buffer_ + (buffer_size - 1);
-            setp( buffer_, buffer_, buffer_beyond );
+            Base::setp( buffer_, buffer_beyond );
         }
     };
 
