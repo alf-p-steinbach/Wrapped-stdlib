@@ -2,6 +2,7 @@
 // #include <stdlib/workarounds/impl/windows_console_io/Wide_to_byte_converter.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
+#include <algorithm>    // std::copy
 #include <assert.h>     // assert
 
 #include <stdlib/workarounds/impl/Size.hpp>                         // Size
