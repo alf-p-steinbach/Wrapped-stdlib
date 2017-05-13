@@ -1,0 +1,14 @@
+﻿#pragma once    // Source encoding: utf-8 ∩
+// #include <stdlib/workarounds/default_locale.hpp>
+//
+// The default locale needs to be set up
+// • to make wide streams work in Unix-land, and
+// • to make narrow character classification functions work in Windows.
+//
+// STDLIB_NO_WORKAROUND_DEFAULT_C_LOCALE suppresses the C locale auto-config.
+// STDLIB_NO_WORKAROUND_DEFAULT_CPP_LOCALE suppresses the C++ locale auto-config.
+//
+// Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
+
+#include <stdlib/workarounds/default_c_locale.hpp>
+#include <stdlib/workarounds/default_cpp_locale.hpp>
