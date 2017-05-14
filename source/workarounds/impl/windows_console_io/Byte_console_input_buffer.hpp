@@ -2,6 +2,11 @@
 // #include <stdlib/workarounds/impl/windows_console_io/Wide_console_input_buffer.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
+// Sillywarning that MSVC once didn't override when params differed by cv qualifiers!
+#ifdef _MSC_VER
+#   pragma warning( disable: 4373 )
+#endif
+
 #include <algorithm>    // std::min
 #include <array>        // std::array
 #include <assert.h>     // assert
