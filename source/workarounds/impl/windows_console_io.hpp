@@ -33,6 +33,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
 
         streambuf*  default_byte_buffer_[n_std_streams] = {};   // Assigned by <init>.
         wstreambuf* default_wide_buffer_[n_std_streams] = {};   // Assigned by <init>.
+
         winapi::DWord   original_console_mode_              = winapi::DWord( -1 );
 
         static auto is_console( int stream_id )

@@ -86,7 +86,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         : public basic_streambuf<char>
     {
     private:
-        static constexpr Size buffer_size = 8;
+        static constexpr Size buffer_size = general_buffer_size;
         using Base = basic_streambuf<char>;
         using Traits = traits_type;
 
@@ -94,11 +94,11 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
 
         Byte_console_input_buffer( Byte_console_input_buffer const& ) = delete;
 
-        auto readbuf_start() const      -> char_type*       { return eback(); }
-        auto readbuf_beyond() const     -> char_type*       { return egptr(); }
+        auto readbuf_start() const      -> char_type*       { return Base::eback(); }
+        auto readbuf_beyond() const     -> char_type*       { return Base::egptr(); }
 
-        auto read_position() const      -> char_type*       { return gptr(); }
-        void advance_read_position( int const n )           { gbump( n ); }
+        auto read_position() const      -> char_type*       { return Base::gptr(); }
+        void advance_read_position( int const n )           { Base::gbump( n ); }
 
     protected:
         auto pbackfail( int_type const ch )
@@ -115,12 +115,12 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
             auto const p_start  = readbuf_start();
             Size const n        = utf8_line_input().read( p_start, buffer_size );
 
-            setg( p_start, p_start, p_start + n );
+            Base::setg( p_start, p_start, p_start + n );
             return (n == 0? Traits::eof() : Traits::to_int_type( *read_position() ));
         }
 
     public:
         Byte_console_input_buffer()
-        { setg( buffer_, buffer_, buffer_ ); }
+        { Base::setg( buffer_, buffer_, buffer_ ); }
     };
 }}}  // namespace stdlib::impl::windows_console_io
