@@ -13,7 +13,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
     // ASCII DEL, code 127, “delete”, is here used as a replacement for encoding
     // errors or unrepresentable code point.
     //
-    // ASCII has a character dedicated to the purpose: SUB “substitute”, code 27, ^Z.
+    // ASCII has a character dedicated to the purpose: SUB “substitute”, code 26, ^Z.
     // But in Windows ^Z is used as an EOF marker for text strems. So ^Z as
     // replacement is not usable in Windows, i.e. it's not a general solution.
     //
