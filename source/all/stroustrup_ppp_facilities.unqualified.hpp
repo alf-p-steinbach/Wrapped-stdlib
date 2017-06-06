@@ -8,6 +8,6 @@
 #pragma once
 
 #include <stdlib/all/stroustrup_ppp_facilities.hpp>
-using namespace std;
-using namespace ppp;
-using namespace ppp_ex;
+using namespace std;            // This directive is in Stroustrup's original header.
+using namespace ppp;            // `error` in global namespace is also in original.
+using namespace ppp_ex;         // Same convention for our `hopefully` and `fail`.
