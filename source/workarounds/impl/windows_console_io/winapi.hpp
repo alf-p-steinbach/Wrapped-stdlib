@@ -6,7 +6,7 @@
 #include <stdlib/c/stddef.hpp>    // ptrdiff_t
 #include <stdlib/streambuf.hpp>   // std::basic_streambuf
 
-#include <stdlib/workarounds/impl/Size.hpp>     // Size
+#include <stdlib/extension/Size.hpp>        // stdlib::(Size, Index)
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::remove;

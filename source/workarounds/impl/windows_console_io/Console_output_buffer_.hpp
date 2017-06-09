@@ -5,8 +5,8 @@
 #include <assert.h>     // assert
 #include <streambuf>    // std::basic_streambuf
 
-#include <stdlib/workarounds/impl/windows_console_io/Byte_to_wide_converter.hpp>    // Byte_to_wide_converter
-#include <stdlib/workarounds/impl/windows_console_io/winapi.hpp>                    // put_text_to_console
+#include <stdlib/extension/Byte_to_wide_converter.hpp>              // Byte_to_wide_converter
+#include <stdlib/workarounds/impl/windows_console_io/winapi.hpp>    // put_text_to_console
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::basic_streambuf;

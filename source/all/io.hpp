@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: utf-8 ∩
-// #include <stdlib/io.hpp>
+// #include <stdlib/all/io.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 // The i/o headers listed by (http://en.cppreference.com/w/cpp/header),

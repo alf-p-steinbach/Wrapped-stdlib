@@ -15,9 +15,9 @@
 #include <iterator>     // std::(begin, end)
 #include <streambuf>    // std::basic_streambuf
 
-#include <stdlib/workarounds/impl/windows_console_io/constants.hpp>                 // general_buffer_size
-#include <stdlib/workarounds/impl/windows_console_io/Wide_to_byte_converter.hpp>    // Wide_to_byte_converter
-#include <stdlib/workarounds/impl/windows_console_io/winapi.hpp>                    // winapi::*
+#include <stdlib/extension/Wide_to_byte_converter.hpp>                  // Wide_to_byte_converter
+#include <stdlib/workarounds/impl/windows_console_io/constants.hpp>     // general_buffer_size
+#include <stdlib/workarounds/impl/windows_console_io/winapi.hpp>        // winapi::*
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::array;

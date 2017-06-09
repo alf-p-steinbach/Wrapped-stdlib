@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: utf-8 ∩
-// #include <stdlib/localization.hpp>
+// #include <stdlib/all/localization.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 // The localization headers listed by (http://en.cppreference.com/w/cpp/header):
