@@ -2,14 +2,18 @@
 // #include <stdlib/workarounds/impl/windows_console_io/Wide_input_buffer.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
-#include <stdlib/algorithm.hpp>   // std::remove
+#include <stdlib/algorithm.hpp>   // std::remove, std::equal
 #include <stdlib/c/stddef.hpp>    // ptrdiff_t
 #include <stdlib/streambuf.hpp>   // std::basic_streambuf
 
+#include <stdlib/extension/ascii.hpp>           // stdlib::ascii::end_of_text
 #include <stdlib/extension/Size.hpp>            // stdlib::(Size, Index)
 #include <stdlib/extension/type_builders.hpp>   // ptr_
 
+#include <stdlib/workarounds/named_boolean_operators.hpp>       // and
+
 namespace stdlib{ namespace impl{ namespace windows_console_io{
+    using std::equal;
     using std::remove;
 
     namespace winapi{
@@ -168,20 +172,23 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
     }
 
     // Each `\r\n` is translated to just `\n`. I.e. the last returned text chunk from
-    // a typed in line is terminated with L'\n'.
+    // a typed in line is terminated with L'\n'. Exception: a line consisting of only
+    // ^Z, ASCII 26, is treated as zero bytes read, signaling EOF to a C++ iostream.
     inline auto get_text_from_console( const ptr_<wchar_t> buffer, const Size buffer_size )
         -> Size
     {
-        winapi::DWord n = 0;
+        winapi::DWord n_read = 0;
         const bool success = !!winapi::ReadConsoleW(
-            console_input_handle(), buffer, buffer_size, &n, nullptr
+            console_input_handle(), buffer, buffer_size, &n_read, nullptr
             );
         if( !success )
         {
             return 0;
         }
-        const auto end = remove( buffer, buffer + n, L'\r' );
-        return end - buffer;
+        const auto end = remove( buffer, buffer + n_read, L'\r' );
+        const int n = end - buffer;
+        static const raw_array_of_<2, wchar_t> eot_line = { wchar_t( ascii::end_of_text ), L'\n' };
+        return (n == 2 and equal( buffer, buffer + 2, eot_line )? 0 : n);
     }
 
     // Each `\n` is translated to `\r\n`.
