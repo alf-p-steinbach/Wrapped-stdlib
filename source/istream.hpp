@@ -1,4 +1,4 @@
-﻿#pragma once    // Source encoding: utf-8 ∩
+﻿#pragma once    // Source encoding: utf-8 with BOM ∩
 // #include <stdlib/istream.hpp>
 //
 // std::basic_istream class template and several typedefs 

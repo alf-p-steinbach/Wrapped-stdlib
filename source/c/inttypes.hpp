@@ -1,4 +1,4 @@
-﻿#pragma once    // Source encoding: utf-8 ∩
+﻿#pragma once    // Source encoding: utf-8 with BOM ∩
 // #include <stdlib/inttypes_h.cpp>
 //
 // Formatting macros , intmax_t and uintmax_t math and conversions.

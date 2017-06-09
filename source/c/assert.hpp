@@ -1,4 +1,4 @@
-﻿// Intentionally no #pragma once    // Source encoding: utf-8 ∩!
+﻿// Intentionally no #pragma once    // Source encoding: utf-8 with BOM ∩!
 // #include <stdlib/all/numerics.hpp>
 //
 // The `assert` macro. Note: can be reincluded with/without NDEBUG defined.

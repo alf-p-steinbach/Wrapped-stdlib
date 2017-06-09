@@ -1,4 +1,4 @@
-﻿#pragma once    // Source encoding: utf-8 ∩
+﻿#pragma once    // Source encoding: utf-8 with BOM ∩
 // #include <stdlib/workarounds/forced_utf8.hpp>
 //
 // See e.g. the MSDN article on "pragma execution_character_set"

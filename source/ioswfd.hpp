@@ -1,4 +1,4 @@
-﻿#pragma once    // Source encoding: utf-8 ∩
+﻿#pragma once    // Source encoding: utf-8 with BOM ∩
 // #include <stdlib/iosfwd.hpp>
 //
 // Forward declarations of all classes in the input/output part of the library.

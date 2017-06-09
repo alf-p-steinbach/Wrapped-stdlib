@@ -1,4 +1,4 @@
-﻿#pragma once    // Source encoding: utf-8 ∩
+﻿#pragma once    // Source encoding: utf-8 with BOM ∩
 // #include <stdlib/workarounds/msvc_wolfcall_suppression.hpp>
 //
 // See e.g. Visual C++ (MSVC) warning C4996, or the article about _SCL_SECURE_NO_WARNINGS

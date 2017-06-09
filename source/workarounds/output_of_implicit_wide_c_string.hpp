@@ -1,4 +1,4 @@
-﻿#pragma once    // Source encoding: utf-8 ∩
+﻿#pragma once    // Source encoding: utf-8 with BOM ∩
 // #include <stdlib/workarounds/output_of_implicit_wide_c_string.hpp>
 //
 // This is a fix for a defect in standard library, where an object that's implicitly

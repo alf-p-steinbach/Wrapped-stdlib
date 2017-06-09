@@ -1,4 +1,4 @@
-﻿#pragma once    // Source encoding: utf-8 ∩
+﻿#pragma once    // Source encoding: utf-8 with BOM ∩
 // #include <stdlib/iostream.hpp>
 //
 // Standard stream objects: cin, cout, cerr, clog, wcin, wcout, wcerr, wclog

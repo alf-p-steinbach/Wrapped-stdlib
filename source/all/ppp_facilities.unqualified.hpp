@@ -1,4 +1,4 @@
-﻿#pragma once    // Source encoding: utf-8 ∩
+﻿#pragma once    // Source encoding: utf-8 with BOM ∩
 // #include <stdlib/all/stroustrup_ppp_facilities.unqualified.hpp>
 //
 // Corresponds to the `"std_lib_facilities.h"` header for Bjarne Stroustrup's book

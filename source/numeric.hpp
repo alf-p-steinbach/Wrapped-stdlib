@@ -1,4 +1,4 @@
-﻿#pragma once    // Source encoding: utf-8 ∩
+﻿#pragma once    // Source encoding: utf-8 with BOM ∩
 // #include <stdlib/numeric.hpp>
 //
 // Numeric operations on values in containers, e.g. iota, accumulate.
