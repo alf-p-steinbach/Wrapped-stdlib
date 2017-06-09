@@ -8,6 +8,7 @@
 
 #include <iostream>
 
+#include <stdlib/extension/type_builders.hpp>       // ptr_
 #include <stdlib/workarounds/default_locale.hpp>
 #include <stdlib/workarounds/impl/windows_console_io/Byte_console_input_buffer.hpp>
 #include <stdlib/workarounds/impl/windows_console_io/Console_output_buffer_.hpp>
@@ -26,17 +27,17 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
     {
     private:
         static constexpr int n_std_streams = 4;
-        basic_ios<char>* const
-            byte_streams_[ n_std_streams]   = {&cin, &cout, &cerr, &clog};
-        basic_ios<wchar_t>* const
-            wide_streams_[ n_std_streams]   = {&wcin, &wcout, &wcerr, &wclog};
+        const array_of_<n_std_streams, ptr_<basic_ios<char>>>
+            byte_streams_ = { &cin, &cout, &cerr, &clog };
+        const array_of_<n_std_streams, ptr_<basic_ios<wchar_t>>>
+            wide_streams_ = { &wcin, &wcout, &wcerr, &wclog };
 
-        streambuf*  default_byte_buffer_[n_std_streams] = {};   // Assigned by <init>.
-        wstreambuf* default_wide_buffer_[n_std_streams] = {};   // Assigned by <init>.
+        array_of_<n_std_streams, ptr_<streambuf>>   default_byte_buffer_ = {};  // Assigned by <init>.
+        array_of_<n_std_streams, ptr_<wstreambuf>>  default_wide_buffer_ = {};  // Assigned by <init>.
 
-        winapi::DWord   original_console_mode_              = winapi::DWord( -1 );
+        winapi::DWord   original_console_mode_ = winapi::DWord( -1 );
 
-        static auto is_console( int stream_id )
+        static auto is_console( const int stream_id )
             -> bool
         { return !!_isatty( stream_id ); }
 
@@ -67,12 +68,12 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
             static Wide_console_output_buffer   wide_err_buf;
             static Wide_console_output_buffer   wide_log_buf;
 
-            streambuf* const byte_buffers[] =
+            const raw_array_<ptr_<streambuf>> byte_buffers =
             {
                 &byte_in_buf, &byte_out_buf, &byte_err_buf, &byte_log_buf
             };
 
-            wstreambuf* const wide_buffers[] =
+            const raw_array_<ptr_<wstreambuf>> wide_buffers =
             {
                 &wide_in_buf, &wide_out_buf, &wide_err_buf, &wide_log_buf
             };
@@ -88,7 +89,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
                     {
                         // enable_ansi_escape_codes() doesn't work with a direct i/o
                         // handle, must use a stream handle; possibly it's per stream.
-                        auto const h = reinterpret_cast<winapi::Handle>(
+                        const auto h = reinterpret_cast<winapi::Handle>(
                             _get_osfhandle( i )
                             );
                         winapi::DWord const old_mode = enable_ansi_escape_codes( h );
@@ -110,6 +111,6 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         }
     };
 
-    bool const dummy = Envelope::make_singleton();
+    const bool dummy = Envelope::make_singleton();
 
 }}}  // namespace stdlib::impl::windows_console_io

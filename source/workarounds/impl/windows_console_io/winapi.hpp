@@ -6,7 +6,8 @@
 #include <stdlib/c/stddef.hpp>    // ptrdiff_t
 #include <stdlib/streambuf.hpp>   // std::basic_streambuf
 
-#include <stdlib/extension/Size.hpp>        // stdlib::(Size, Index)
+#include <stdlib/extension/Size.hpp>            // stdlib::(Size, Index)
+#include <stdlib/extension/type_builders.hpp>   // ptr_
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::remove;
@@ -56,19 +57,19 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
 
         extern "C"
         auto _stdcall CreateFileW(
-            wchar_t const*          lpFileName,
-            DWord                   dwDesiredAccess,
-            DWord                   dwShareMode,
-            Security_attributes*    lpSecurityAttributes,
-            DWord                   dwCreationDisposition,
-            DWord                   dwFlagsAndAttributes,
-            Handle                  hTemplateFile
+            ptr_<const wchar_t>         lpFileName,
+            DWord                       dwDesiredAccess,
+            DWord                       dwShareMode,
+            ptr_<Security_attributes>   lpSecurityAttributes,
+            DWord                       dwCreationDisposition,
+            DWord                       dwFlagsAndAttributes,
+            Handle                      hTemplateFile
             ) -> Handle;
 
         extern "C"
         auto __stdcall GetConsoleMode(
             Handle          hConsoleHandle,
-            DWord*          lpMode
+            ptr_<DWord>     lpMode
             ) -> Bool;
 
         extern "C"
@@ -78,10 +79,10 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         extern "C"
         auto __stdcall ReadConsoleW(
             Handle          hConsoleInput,
-            void*           lpBuffer,
+            ptr_<void>      lpBuffer,
             DWord           nNumberOfCharsToRead,
-            DWord*          lpNumberOfCharsRead,
-            void*           pInputControl
+            ptr_<DWord>     lpNumberOfCharsRead,
+            ptr_<void>      pInputControl
             ) -> Bool;
 
         extern "C"
@@ -92,23 +93,23 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
 
         extern "C"
         auto __stdcall WideCharToMultiByte(
-            UInt            CodePage,
-            DWord           dwFlags,
-            wchar_t const*  lpWideCharStr,
-            int             cchWideChar,
-            char*           lpMultiByteStr,
-            int             cbMultiByte,
-            char const*     lpDefaultChar,
-            Bool*           lpUsedDefaultChar
+            UInt                    CodePage,
+            DWord                   dwFlags,
+            ptr_<const wchar_t>     lpWideCharStr,
+            int                     cchWideChar,
+            ptr_<char>              lpMultiByteStr,
+            int                     cbMultiByte,
+            ptr_<const char>        lpDefaultChar,
+            ptr_<Bool>              lpUsedDefaultChar
             ) -> int;
 
         extern "C"
         auto __stdcall WriteConsoleW(
-            Handle          hConsoleOutput,
-            void const*     lpBuffer,
-            DWord           nNumberOfCharsToWrite,
-            DWord*          lpNumberOfCharsWritten,
-            void*           lpReserved
+            Handle                  hConsoleOutput,
+            ptr_<const void>        lpBuffer,
+            DWord                   nNumberOfCharsToWrite,
+            ptr_<DWord>             lpNumberOfCharsWritten,
+            ptr_<void>              lpReserved
             ) -> Bool;
     }  // namespace winapi
 
@@ -154,10 +155,10 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         return the_handle;
     }
 
-    inline auto enable_ansi_escape_codes( winapi::Handle const stream_handle )
+    inline auto enable_ansi_escape_codes( const winapi::Handle stream_handle )
         -> winapi::DWord        // original console mode
     {
-        winapi::DWord const ansi_escape_codes_flag =
+        const winapi::DWord ansi_escape_codes_flag =
             winapi::enable_virtual_terminal_processing;
 
         winapi::DWord original_mode = 0;
@@ -168,27 +169,27 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
 
     // Each `\r\n` is translated to just `\n`. I.e. the last returned text chunk from
     // a typed in line is terminated with L'\n'.
-    inline auto get_text_from_console( wchar_t* const buffer, Size const buffer_size )
+    inline auto get_text_from_console( const ptr_<wchar_t> buffer, const Size buffer_size )
         -> Size
     {
         winapi::DWord n = 0;
-        bool const success = !!winapi::ReadConsoleW(
+        const bool success = !!winapi::ReadConsoleW(
             console_input_handle(), buffer, buffer_size, &n, nullptr
             );
         if( !success )
         {
             return 0;
         }
-        auto const end = remove( buffer, buffer + n, L'\r' );
+        const auto end = remove( buffer, buffer + n, L'\r' );
         return end - buffer;
     }
 
     // Each `\n` is translated to `\r\n`.
-    inline auto put_text_to_console( wchar_t const* const buffer, Size const buffer_size )
+    inline auto put_text_to_console( const ptr_<const wchar_t> buffer, const Size buffer_size )
         -> Size
     {
         winapi::DWord n = 0;
-        bool const success = !!winapi::WriteConsoleW(
+        const bool success = !!winapi::WriteConsoleW(
             console_output_handle(), buffer, buffer_size, &n, nullptr
             );
         if( !success )

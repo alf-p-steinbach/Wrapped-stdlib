@@ -13,27 +13,27 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::min;
     using std::wstring;
 
-    inline auto write( wchar_t const* const data, Size const n )
+    inline auto write( const ptr_<const wchar_t> data, const Size n )
         -> Size
     { return put_text_to_console( data, n ); }
 
-    inline auto write( char const* const data, Size const n )
+    inline auto write( const ptr_<const char> data, const Size n )
         -> Size
     {
         static Byte_to_wide_converter converter;
 
         constexpr Size result_size = Byte_to_wide_converter::in_buf_size;
-        char const*     p_source    = data;
-        wchar_t         result[result_size];
-        Size            n_consumed  = 0;
+        ptr_<const char>    p_source    = data;
+        wchar_t             result[result_size];
+        Size                n_consumed  = 0;
 
         for( ;; )
         {
-            Size const n_remaining = n - n_consumed;
-            auto const chunk_size = min<Size>( converter.available_space(), n_remaining );
+            const Size n_remaining = n - n_consumed;
+            const auto chunk_size = min<Size>( converter.available_space(), n_remaining );
             converter.add( chunk_size, p_source );
-            Size const n_converted = converter.convert_into( result, result_size );
-            Size const n_written = write( result, n_converted );
+            const Size n_converted = converter.convert_into( result, result_size );
+            const Size n_written = write( result, n_converted );
             if( n_written < n_converted )
             {
                 break;      // But really, how to signal an i/o error after translate?
@@ -60,23 +60,23 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         using typename Base::char_type;
         using typename Base::int_type;
 
-        Char    buffer_[buffer_size];
+        array_of_<buffer_size, Char>    buffer_;
 
-        Console_output_buffer_( Console_output_buffer_ const& ) = delete;
+        Console_output_buffer_( ref_<const Console_output_buffer_> ) = delete;
 
-        auto writebuf_start() const     -> char_type*   { return Base::pbase(); }
-        auto writebuf_beyond() const    -> char_type*   { return Base::epptr(); }
-        auto write_position() const     -> char_type*   { return Base::pptr(); }
+        auto writebuf_start() const     -> ptr_<char_type>  { return Base::pbase(); }
+        auto writebuf_beyond() const    -> ptr_<char_type>  { return Base::epptr(); }
+        auto write_position() const     -> ptr_<char_type>  { return Base::pptr(); }
 
-        void advance_write_position( int const n )      { Base::pbump( n ); }
+        void advance_write_position( const int n )      { Base::pbump( n ); }
 
     protected:
-        auto flush( int const n_extra = 0 )
+        auto flush( const int n_extra = 0 )
             -> bool
         {
-            auto const p_start  = writebuf_start();
-            Size const n = (write_position() - writebuf_start()) + n_extra;
-            Size const n_written = write( p_start, n );
+            const auto p_start  = writebuf_start();
+            const Size n = (write_position() - writebuf_start()) + n_extra;
+            const Size n_written = write( p_start, n );
             if( n_written != n )
             {
                 return false;
@@ -86,11 +86,13 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         }
 
         auto sync()
-            -> int  override
+            -> int
+            override
         { return (flush()? 0 : -1); }   // -1 = failure.
 
-        auto overflow( int_type const c )
-            -> int_type  override
+        auto overflow( const int_type c )
+            -> int_type
+            override
         {
             assert( write_position() <= writebuf_beyond() );
 
@@ -100,15 +102,16 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
                 *write_position() = static_cast<Char>( c );
                 ++n_extra;
             }
-            bool const success = flush( n_extra );
+            const bool success = flush( n_extra );
             return (success? Traits::not_eof( c ) : Traits::eof());
         }
 
     public:
         Console_output_buffer_()
         {
-            auto const buffer_beyond = buffer_ + (buffer_size - 1);
-            Base::setp( buffer_, buffer_beyond );
+            const ptr_<char_type> buffer_start = buffer_.data();
+            const ptr_<char_type> buffer_beyond = buffer_start + (buffer_.size() - 1);
+            Base::setp( buffer_start, buffer_beyond );
         }
     };
 

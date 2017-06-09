@@ -12,15 +12,17 @@
 //
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
+#include <stdlib/extension/type_builders.hpp>   // stdlib::ref_
 #include <ostream>
 
 #ifndef STDLIB_NO_WORKAROUND_OUTPUT_OF_IMPLICIT_WIDE_C_STRING
     namespace std {
 
         inline auto operator<< (
-            basic_ostream<wchar_t, char_traits<wchar_t>>&   stream,
-            wchar_t const* const                            s
-            ) -> basic_ostream<wchar_t, char_traits<wchar_t>>&
+            stdlib::ref_<basic_ostream<wchar_t, char_traits<wchar_t>>>  stream,
+            const stdlib::ptr_<const wchar_t>                           s
+            )
+            -> stdlib::ref_<basic_ostream<wchar_t, char_traits<wchar_t>>>
         { return stream.write( s, char_traits<wchar_t>::length( s ) ); }
 
     }  // namespace std

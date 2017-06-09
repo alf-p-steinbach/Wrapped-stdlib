@@ -8,6 +8,6 @@
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
 
-    Size const  general_buffer_size = impl::converter_buffer_size;
+    const Size general_buffer_size = impl::converter_buffer_size;
 
 }}}  // namespace stdlib::impl::windows_console_io

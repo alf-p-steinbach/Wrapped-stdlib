@@ -8,6 +8,7 @@
 #include <iterator>     // std::(begin, end)
 #include <streambuf>    // std::basic_streambuf
 
+#include <stdlib/extension/type_builders.hpp>       // ptr_, array_of_
 #include <stdlib/workarounds/impl/windows_console_io/constants.hpp> // general_buffer_size
 #include <stdlib/workarounds/impl/windows_console_io/winapi.hpp>    // winapi::*
 
@@ -24,18 +25,19 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         using Base = basic_streambuf<wchar_t>;
         using Traits = traits_type;
 
-        wchar_t     buffer_[buffer_size];
+        array_of_<buffer_size, wchar_t> buffer_;
 
         Wide_console_input_buffer( Wide_console_input_buffer const& ) = delete;
 
-        auto readbuf_start() const      -> char_type*       { return eback(); }
-        auto readbuf_beyond() const     -> char_type*       { return egptr(); }
+        auto readbuf_start() const      -> ptr_<char_type>      { return eback(); }
+        auto readbuf_beyond() const     -> ptr_<char_type>      { return egptr(); }
 
-        auto read_position() const      -> char_type*       { return gptr(); }
-        void advance_read_position( int const n )           { gbump( n ); }
+        auto read_position() const      -> ptr_<char_type>      { return gptr(); }
+
+        void advance_read_position( const int n ) { gbump( n ); }
 
     protected:
-        auto pbackfail( int_type const ch )
+        auto pbackfail( const int_type ch )
             -> int_type
             override
         { (void) ch; return traits_type::eof(); }          // TODO:
@@ -46,8 +48,8 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         {
             assert( read_position() == readbuf_beyond() );
 
-            auto const p_start  = readbuf_start();
-            Size const n        = get_text_from_console( p_start, buffer_size );
+            const auto p_start  = readbuf_start();
+            const Size n        = get_text_from_console( p_start, buffer_size );
 
             setg( p_start, p_start, p_start + n );
             return (n == 0? Traits::eof() : Traits::to_int_type( *read_position() ));
@@ -55,6 +57,9 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
 
     public:
         Wide_console_input_buffer()
-        { setg( buffer_, buffer_, buffer_ ); }
+        {
+            const ptr_<char_type> buffer_start = buffer_.data();
+            setg( buffer_start, buffer_start, buffer_start );
+        }
     };
 }}}  // namespace stdlib::impl::windows_console_io

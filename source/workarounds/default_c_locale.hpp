@@ -36,7 +36,7 @@ namespace stdlib{ namespace impl{ namespace default_c_locale{
     };
 
 #   ifndef STDLIB_NO_WORKAROUND_DEFAULT_C_LOCALE
-        bool const dummy = Envelope::make_singleton();
+        const bool dummy = Envelope::make_singleton();
 #   endif
 
 }}}  // namespace stdlib::impl::default_c_locale

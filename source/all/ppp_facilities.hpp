@@ -7,11 +7,14 @@
 //
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
+
 // Silly-warning suppression:
 #if defined( _MSC_VER )
-#   pragma warning( disable: 4646 ) // 'noreturn' function has non-void return type.
 #   define _SCL_SECURE_NO_WARNINGS  // Call to 'std::copy' (etc.) may be unsafe.
 #endif
+
+#include <stdlib/extension/hopefully_and_fail.hpp>
+#include <stdlib/extension/type_builders.hpp>
 
 #include <stdlib/c/math.hpp>
 #include <stdlib/c/string.hpp>
@@ -23,39 +26,24 @@
 
 //using namespace std;      No, Bjarne. No!
 
-#if !defined( PPP_NORETURN )
-#   if defined( _MSC_VER )
-#       define PPP_NORETURN     __declspec( noreturn )
-#   elif defined( __GNUC__ )
-#       define PPP_NORETURN     __attribute__(( noreturn ))
-#   else
-#       define PPP_NORETURN     [[noreturn]]
-#   endif
-#endif
-
 namespace ppp {
     using std::string;
     using std::runtime_error;
+    using stdlib::ref_;
 
-    inline PPP_NORETURN void error( string const& message )
+    // Bjarne's functions:
+
+    inline STDLIB_NORETURN void error( ref_<const string> message )
     { throw runtime_error( message ); }
 
-    inline PPP_NORETURN void error( string const& s1, string const& s2 )
+    inline STDLIB_NORETURN void error( ref_<const string> s1, ref_<const string> s2 )
     { error( s1 + s2 ); }
 
 }  // namespace ppp
 
 namespace ppp_ex {
-    using std::string;
-    using std::runtime_error;
 
-   // Functions added here for the same purpose, more convenient:
+    // Functions added here for the same purpose, more convenient:
+    using namespace stdlib::hopefully_and_fail;
 
-    inline auto hopefully( bool const condition )
-        -> bool
-    { return condition; }
-
-    inline PPP_NORETURN auto fail( string const& message )
-        -> bool
-    { throw runtime_error( message ); }
 }  // namespace ppp_ex
