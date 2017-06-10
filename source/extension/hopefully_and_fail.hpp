@@ -3,7 +3,7 @@
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 #include <stdlib/extension/STDLIB_NORETURN.hpp>
-#include <stdlib/extension/type_builders.hpp>
+#include <stdlib/extension/type_builders.hpp>       // stdlib::(ref_)
 
 #include <stdlib/stdexcept.hpp>
 #include <stdlib/string.hpp>

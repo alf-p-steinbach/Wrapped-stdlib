@@ -7,6 +7,5 @@
 #include <stdlib/string.hpp>        // basic_string template, string and wstring.
 
 #include <stdlib/extension/version.hpp>
-#if defined( STDLIB_USE_EXPERIMENTAL_CPP17 ) || defined( STDLIB_COMPILER_SUPPORTS_CPP17 )
 #   include <stdlib/string_view.hpp>            // basic_string_view template.
 #endif
