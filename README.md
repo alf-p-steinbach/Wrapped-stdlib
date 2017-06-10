@@ -1,0 +1,42 @@
+
+What is *stdlib*?
+---------------------
+
+*stdlib* wraps the C++ standard library, provides common headers for functional areas like i/o, and fixes various problems with the Visual C++ and g++ implementations:
+* `char`-based (narrow) console i/o in Windows works with Unicode text, specifically UTF-8 encoding.
+* `wchar_t`-based (wide) console i/o in *nix land works by default.
+* The `<stdlib/c/math.hpp>` header includes both `<math.h>` and `<cmath>`. No problem of which to choose: `<stdlib/c/math.hpp>` chooses both, thank you, for maximum portability. And the same for other C library headers that are available in C++.
+
+ 
+How does *stdlib* work?
+-----------------------
+
+*stdlib* is a pure header library.
+
+Microsoft’s mother-of-all-headers `<windows.h>`, which otherwise would define thousands of macros, isn't used. *stdlib* is clean in this respect. The few API functions that are used to support Unicode console i/o in Windows, are stable and are declared by *stdlib*'s own code.
+
+The wide console i/o in \*nix-land is made to work via an automated call to `setlocale( LC_ALL, "" )`. A ditto global locale is also established at the C++ level. This can easily be foiled, but it's about making things *work by default*, which is generally better.
+
+The Unicode-based narrow console i/o in Windows is made to work for international text by automatically installing special stream buffers in those of `cin`, `cout`, `cerr`, `clog`, `wcin`, `wcout`, `wcerr` and `wclog` that are connected to a console window. The special buffers use the Windows console API vis-à-vis the console, and for the narrow streams they translate between the console’s UCS-2 encoding and the C++ code’s UTF-8 encoding. Byte sequences that are invalid as UTF-8 do not cause a persisting error state, but are instead just replaced with character code 127, the ASCII “del” character.
+
+The conversion functionality is available directly to users of *stdlib* via `<stdlib/extension/Byte_to_wide_converter.hpp>` and `<stdlib/extension/Wide_to_byte_converter.hpp>`. These classes wrap use of `std::code_cvt`. In particular this code deals with conversion failures such as invalid-as-UTF-8 byte sequences.
+
+Who uses *stdlib*?
+------------------
+
+So far only the author has been thinking of using it, and he's too busy still adding to it, to use it. It's useful as-is, though.
+
+What is *stdlib*’s goal?
+-----------------------
+
+The main goal is to enable learners and professionals who write small tool or exploratory programs, to be able to do that simply, and have those programs work with international text.
+
+How can your organization benefit from using *stdlib*?
+------------------------------------------------------
+
+With *stdlib*’s common headers, such as `<stdlib/c/math.hpp>`, or e.g. `<stdlib/all/io.hpp>`, there are
+* fewer headers to include and possibly forget to include in your source code,
+* portability problems due to e.g. referring unqualified to `printf` after only including `<cstdio>`, are reduced or eliminated, and
+* writing small programs is a breeze compared with direct use of the standard library.
+
+Also, it's nice to have working interntional text console i/o in Windows, with ordinary `char` based text representation.
