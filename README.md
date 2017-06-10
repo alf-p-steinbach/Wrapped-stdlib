@@ -57,7 +57,7 @@ With *stdlib*’s common headers, such as `<stdlib/c/math.hpp>`, or e.g. `<stdli
 * portability problems due to e.g. referring unqualified to `printf` after only including `<cstdio>`, are reduced or eliminated, and
 * writing small programs is a breeze compared with direct use of the standard library.
 
-Also, it's nice to have working interntional text console i/o in Windows, with ordinary `char` based text representation.
+Also, it's nice to have working international text console i/o in Windows, with ordinary `char` based text representation.
 
 License.
 -----------
