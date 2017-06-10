@@ -4,7 +4,7 @@ What is *stdlib*?
 
 *stdlib* wraps the C++ standard library, provides common headers for functional areas like i/o, and fixes various problems with the Visual C++ and g++ implementations, e.g.:
 * `char`-based (narrow) console i/o in Windows works with Unicode text, specifically UTF-8 encoding. For example, a novice program using `std::string`, that asks for the user’s name and responds with a personalized greeting, works even for Norwegian students. Or Danish ones.
-* `wchar_t`-based (wide) console i/o in *nix-land works by default. This isn't commonly used functionality, but fixing it for *nix-land it complements the fix for the narrow console i/o in Windows. It’s just nice to have things working.
+* `wchar_t`-based (wide) console i/o in *nix-land works by default. This isn't commonly used functionality, but fixing it for *nix-land complements the fix for the narrow console i/o in Windows. It’s just nice to have things working.
 * The `<stdlib/c/math.hpp>` header includes both `<math.h>` and `<cmath>`. No problem of which to choose: `<stdlib/c/math.hpp>` chooses both, thank you, for maximum portability. And the same for other C library headers that are available in C++.
     
     ![Winnie the pooh](images/pooh.jpg)
