@@ -9,13 +9,13 @@ What is *stdlib*?
     
     ![Winnie the pooh](images/pooh.jpg)
  
-Two developments in the C++ infra-structure developments have made *stdlib* (or a similar library) a practical, instead of just an idealistic, choice.
+Two developments in the C++ infra-structure developments have made *stdlib*’s “always UTF-8” a practical, instead of just an idealistic, choice.
 
 First, • the upcoming C++17 *filesystem* library, part of the C++17 standard library, lets you open or create or remove files via UTF-8 encoded `char` based filenames. This complements *stdlib* in a great way. *stdlib* therefore provides access to *filesystem* already with Visual C++ 2017 and later, and with recent g++ versions, as well as any C++ implementation that supports C++17 and later.
 
 Secondly, • Visual C++, the main compiler on the Windows platform, now supports UTF-8 as the execution character set, i.e. for ordinary `char` based literals.
 
-Unfortunately Visual C++’s UTF-8 execution character set support is only partial. For example, as of Visual C++ 2017 command line arguments, the arguments of `main`, are encoded as Windows ANSI no matter what options you use, and output of a narrow string via a wide stream interprets it as Windows ANSI-encoded. Still, having UTF-8 encoded ordinary narrow literals goes 80% of the way. :)
+Visual C++ 2017’s  UTF-8 execution character set support is only partial. For example, as of Visual C++ 2017 command line arguments, the arguments of `main`, are encoded as Windows ANSI no matter what options you use, and output of a narrow string via a wide stream interprets it as Windows ANSI-encoded. But having UTF-8 encoded ordinary narrow literals goes 80% of the way. :)
 
 
 How does *stdlib* work?
