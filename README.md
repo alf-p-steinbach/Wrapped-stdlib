@@ -15,7 +15,7 @@ Two C++ infra-structure developments have made *stdlib*’s “always UTF-8” a
 
 * Visual C++, the main compiler on the Windows platform, now supports UTF-8 as the execution character set, i.e. for ordinary `char` based literals.
 
-Visual C++ 2017’s  UTF-8 execution character set support is only partial. For example, as of Visual C++ 2017 command line arguments, the arguments of `main`, are encoded as Windows ANSI no matter what options you use, and output of a narrow string via a wide stream interprets it as Windows ANSI-encoded. But having UTF-8 encoded ordinary narrow literals goes 80% of the way. :)
+Visual C++ 2017’s  UTF-8 execution character set support is only partial. For example, command line arguments, the arguments of `main`, are encoded as Windows ANSI no matter what options you use, and output of a narrow string via a wide stream interprets it as Windows ANSI-encoded. But having UTF-8 encoded ordinary narrow literals goes 80% of the way. :)
 
 
 How does *stdlib* work?
