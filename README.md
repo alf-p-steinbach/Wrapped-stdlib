@@ -20,7 +20,7 @@ The wide console i/o in \*nix-land is made to work via an automated call to `set
 
 The Unicode-based narrow console i/o in Windows is made to work for international text by automatically installing special stream buffers in those of `cin`, `cout`, `cerr`, `clog`, `wcin`, `wcout`, `wcerr` and `wclog` that are connected to a console window. The special buffers use the Windows console API vis-à-vis the console, and for the narrow streams they translate between the console’s UCS-2 encoding and the C++ code’s UTF-8 encoding. Byte sequences that are invalid as UTF-8 do not cause a persisting error state, but are instead just replaced with character code 127, the ASCII “del” character.
 
-The same conversion functionality is available to users of *stdlib* via `<stdlib/extension/Byte_to_wide_converter.hpp>` and `<stdlib/extension/Wide_to_byte_converter.hpp>`. These classes wrap use of `std::code_cvt`. In particular this code deals with conversion failures such as invalid-as-UTF-8 byte sequences.
+The same conversion functionality is available to users of *stdlib* via `<stdlib/extension/Byte_to_wide_converter.hpp>` and `<stdlib/extension/Wide_to_byte_converter.hpp>`. These classes wrap use of `std::codecvt`. In particular this code deals with conversion failures such as invalid-as-UTF-8 byte sequences.
 
 Who uses *stdlib*?
 ------------------
