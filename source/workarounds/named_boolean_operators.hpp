@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: utf-8 with BOM ∩
-// #include <stdlib/workarounds/forced_utf8.hpp>
+// #include <stdlib/workarounds/utf8_literals.hpp>
 //
 // Standard C++ provides “and”, “or” and “not”. Visual C++ doesn't, by default. See the
 // article on “iso646” at <url:https://msdn.microsoft.com/en-us/library/dn494964.aspx>.
