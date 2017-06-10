@@ -3,6 +3,7 @@
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 #include <assert.h>     // assert
+#include <new>          // placement new
 #include <streambuf>    // std::basic_streambuf
 
 #include <stdlib/extension/Byte_to_wide_converter.hpp>              // Byte_to_wide_converter
@@ -11,6 +12,7 @@
 namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::basic_streambuf;
     using std::min;
+    using std::streamsize;
     using std::wstring;
 
     inline auto write( const ptr_<const wchar_t> data, const Size n )
@@ -20,7 +22,11 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
     inline auto write( const ptr_<const char> data, const Size n )
         -> Size
     {
-        static Byte_to_wide_converter converter;
+        // Shenanigans to avoid (too early) destruction of the singleton converter:
+        using Byte = unsigned char;
+        alignas( Byte_to_wide_converter )
+            static raw_array_of_<sizeof( Byte_to_wide_converter), Byte> converter_storage;
+        static auto* const converter = ::new( &converter_storage ) Byte_to_wide_converter{};
 
         constexpr Size result_size = Byte_to_wide_converter::in_buf_size;
         ptr_<const char>    p_source    = data;
@@ -30,9 +36,9 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         for( ;; )
         {
             const Size n_remaining = n - n_consumed;
-            const auto chunk_size = min<Size>( converter.available_space(), n_remaining );
-            converter.add( chunk_size, p_source );
-            const Size n_converted = converter.convert_into( result, result_size );
+            const auto chunk_size = min<Size>( converter->available_space(), n_remaining );
+            converter->add( chunk_size, p_source );
+            const Size n_converted = converter->convert_into( result, result_size );
             const Size n_written = write( result, n_converted );
             if( n_written < n_converted )
             {
@@ -49,6 +55,10 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         return n_consumed;
     }
 
+    template< class Char > struct Complement_of_;
+    template<> struct Complement_of_<char> { using T = wchar_t; };
+    template<> struct Complement_of_<wchar_t> { using T = char; };
+
     template< class Char >
     class Console_output_buffer_
         : public basic_streambuf<Char>
@@ -59,7 +69,12 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         using Traits = typename Base::traits_type;
         using typename Base::char_type;
         using typename Base::int_type;
+        using Other_char = typename Complement_of_<Char>::T;
+        using Other_buffer = Console_output_buffer_<Other_char>;
 
+        friend Other_buffer;
+
+        ptr_<Other_buffer>              p_buddy_    = nullptr;
         array_of_<buffer_size, Char>    buffer_;
 
         Console_output_buffer_( ref_<const Console_output_buffer_> ) = delete;
@@ -69,6 +84,14 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         auto write_position() const     -> ptr_<char_type>  { return Base::pptr(); }
 
         void advance_write_position( const int n )      { Base::pbump( n ); }
+
+        void flush_buddy_buffer()
+        {
+            if( p_buddy_ != nullptr )
+            {
+                p_buddy_->flush();
+            }
+        }
 
     protected:
         auto flush( const int n_extra = 0 )
@@ -85,11 +108,6 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
             return true;
         }
 
-        auto sync()
-            -> int
-            override
-        { return (flush()? 0 : -1); }   // -1 = failure.
-
         auto overflow( const int_type c )
             -> int_type
             override
@@ -99,6 +117,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
             int n_extra = 0;
             if( not Traits::eq_int_type( c, Traits::eof() ) )
             {
+                flush_buddy_buffer();
                 *write_position() = static_cast<Char>( c );
                 ++n_extra;
             }
@@ -106,7 +125,30 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
             return (success? Traits::not_eof( c ) : Traits::eof());
         }
 
+        auto sync()
+            -> int
+            override
+        { return (flush()? 0 : -1); }   // -1 = failure.
+
+        auto xsputn( ptr_<const char_type> s, const streamsize n )
+            -> streamsize
+            override
+        {
+            flush_buddy_buffer();
+            return Base::xsputn( s, n );
+        }
+
     public:
+        void set_buddy( const ptr_<Other_buffer> p_other )
+        {
+            assert( p_buddy_ == nullptr );
+            p_buddy_ = p_other;
+        }
+
+        ~Console_output_buffer_()
+            override
+        { flush(); }
+
         Console_output_buffer_()
         {
             const ptr_<char_type> buffer_start = buffer_.data();
