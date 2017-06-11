@@ -7,6 +7,7 @@
 #endif
 
 #include <iostream>
+#include <stddef.h>         // size_t
 
 #include <stdlib/extension/type_builders.hpp>       // ptr_
 #include <stdlib/workarounds/default_locale.hpp>
@@ -15,6 +16,23 @@
 #include <stdlib/workarounds/impl/windows_console_io/Wide_console_input_buffer.hpp>
 
 #include <io.h>     // _isatty, _get_osfhandle (Visual C++ extensions supported by g++).
+
+// Output of a pure ASCII narrow string to a wide stream is safe. Output of a narrow
+// string with characters outside the ASCII range is likely to produce garbage, because
+// the machinery in Microsoft's runtime library interprets those bytes as Windows ANSI.
+// The following overload prevents inadvertent garbage result for attempted output of a
+// narrow literal to a wide stream, by making the call ambiguous. You can force such
+// output (resolving the ambiguity) by converting the literal to pointer, e.g. by
+// placing a `+` in front of it: `wcout << +"Woo hoo, I'm using '+' instead of 'L'!";`.
+// But really, just use a wide literal, `L`. Unless it's a named narrow literal.
+//
+using STDLIB_MAKES_THIS_CALL_AMBIGUOUS_TO_PREVENT_GARBAGE_OUTPUT = char const;
+template< size_t n >
+auto operator<<( 
+    std::wostream&,
+    STDLIB_MAKES_THIS_CALL_AMBIGUOUS_TO_PREVENT_GARBAGE_OUTPUT (&)[n]
+    )
+    -> std::wostream&;
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::cin; using std::cout; using std::cerr; using std::clog;
