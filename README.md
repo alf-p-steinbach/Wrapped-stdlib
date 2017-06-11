@@ -2,6 +2,7 @@
 What is *stdlib*?
 ---------------------
 
+*Short version*:
 
 It’s the C++ standard library with fixes, including Windows UTF-8 console i/o.
 
