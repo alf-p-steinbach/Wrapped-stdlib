@@ -2,11 +2,10 @@
 What is *stdlib*?
 ---------------------
 
-Short version:
 
 It’s the C++ standard library with fixes, including Windows UTF-8 console i/o.
 
-TLDR:
+*TLDR*:
 
 *stdlib* wraps the C++ standard library, provides common headers for functional areas like i/o, and fixes various problems with the Visual C++ and g++ implementations, e.g.:
 * `char`-based (narrow) console i/o in Windows works with Unicode text, specifically UTF-8 encoding. For example, a novice program using `std::string`, that asks for the user’s name and responds with a personalized greeting, works even for Norwegian students. Or Danish ones.
