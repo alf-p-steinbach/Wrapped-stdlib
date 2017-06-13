@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: utf-8 with BOM ∩
-// #include <stdlib/workarounds/impl/windows_console_io.hpp>
+// #include <stdlib/fix/impl/windows_console_io.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 #ifndef _WIN32
@@ -10,10 +10,10 @@
 #include <stddef.h>         // size_t
 
 #include <stdlib/extension/type_builders.hpp>       // ptr_
-#include <stdlib/workarounds/default_locale.hpp>
-#include <stdlib/workarounds/impl/windows_console_io/Byte_console_input_buffer.hpp>
-#include <stdlib/workarounds/impl/windows_console_io/Console_output_buffer_.hpp>
-#include <stdlib/workarounds/impl/windows_console_io/Wide_console_input_buffer.hpp>
+#include <stdlib/fix/default_locale.hpp>
+#include <stdlib/fix/impl/windows_console_io/Byte_console_input_buffer.hpp>
+#include <stdlib/fix/impl/windows_console_io/Console_output_buffer_.hpp>
+#include <stdlib/fix/impl/windows_console_io/Wide_console_input_buffer.hpp>
 
 #include <io.h>     // _isatty, _get_osfhandle (Visual C++ extensions supported by g++).
 
@@ -23,7 +23,7 @@
 // The following overload prevents inadvertent garbage result for attempted output of a
 // narrow literal to a wide stream, by making the call ambiguous. You can force such
 // output (resolving the ambiguity) by converting the literal to pointer, e.g. by
-// placing a `+` in front of it: `wcout << +"Woo hoo, I'm using '+' instead of 'L'!";`.
+// placing a `0+` in front of it: `wcout << 0+"Woo hoo, I'm using '+' instead of 'L'!";`.
 // But really, just use a wide literal, `L`. Unless it's a named narrow literal.
 //
 using STDLIB_MAKES_THIS_CALL_AMBIGUOUS_TO_PREVENT_GARBAGE_OUTPUT = char const;

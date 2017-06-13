@@ -6,4 +6,4 @@
 
 #include <cuchar>
 #include <uchar.h>
-#include <stdlib/workarounds/default_c_locale.hpp>
+#include <stdlib/fix/default_c_locale.hpp>

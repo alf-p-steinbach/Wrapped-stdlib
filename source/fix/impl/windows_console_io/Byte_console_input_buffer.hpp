@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: utf-8 with BOM ∩
-// #include <stdlib/workarounds/impl/windows_console_io/Wide_console_input_buffer.hpp>
+// #include <stdlib/fix/impl/windows_console_io/Wide_console_input_buffer.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 // Sillywarning that MSVC once didn't override when params differed by cv qualifiers!
@@ -16,9 +16,9 @@
 #include <streambuf>    // std::basic_streambuf
 
 #include <stdlib/extension/Wide_to_byte_converter.hpp>                  // Wide_to_byte_converter
-#include <stdlib/workarounds/impl/windows_console_io/constants.hpp>     // general_buffer_size
-#include <stdlib/workarounds/impl/windows_console_io/winapi.hpp>        // winapi::*
-#include <stdlib/workarounds/named_boolean_operators.hpp>               // and, or
+#include <stdlib/fix/impl/windows_console_io/constants.hpp>     // general_buffer_size
+#include <stdlib/fix/impl/windows_console_io/winapi.hpp>        // winapi::*
+#include <stdlib/fix/named_boolean_operators.hpp>               // and, or
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::array;

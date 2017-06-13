@@ -16,3 +16,4 @@
 
 // Not listed in this category by cppreference, but useful/necessary:
 #include <stdlib/all/localization.hpp>
+#include <stdlib/all/text.hpp>

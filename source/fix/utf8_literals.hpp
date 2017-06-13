@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: utf-8 with BOM ∩
-// #include <stdlib/workarounds/utf8_literals.hpp>
+// #include <stdlib/fix/utf8_literals.hpp>
 //
 // See e.g. the MSDN article on "pragma execution_character_set"
 // at <url:https://msdn.microsoft.com/en-us/library/mt708823.aspx>.

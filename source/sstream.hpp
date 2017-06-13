@@ -5,4 +5,4 @@
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 #include <sstream>
-#include <stdlib/workarounds/output_of_implicit_wide_c_string.hpp>
+#include <stdlib/fix/output_of_implicit_wide_c_string.hpp>

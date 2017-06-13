@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: utf-8 with BOM ∩
-// #include <stdlib/workarounds/impl/windows_console_io/Console_output_buffer_.hpp>
+// #include <stdlib/fix/impl/windows_console_io/Console_output_buffer_.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 #include <assert.h>     // assert
@@ -7,7 +7,7 @@
 #include <streambuf>    // std::basic_streambuf
 
 #include <stdlib/extension/Byte_to_wide_converter.hpp>              // Byte_to_wide_converter
-#include <stdlib/workarounds/impl/windows_console_io/winapi.hpp>    // put_text_to_console
+#include <stdlib/fix/impl/windows_console_io/winapi.hpp>    // put_text_to_console
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::basic_streambuf;

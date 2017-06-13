@@ -7,4 +7,4 @@
 
 #include <cstdlib>
 #include <stdlib.h>
-#include <stdlib/workarounds/default_c_locale.hpp>
+#include <stdlib/fix/default_c_locale.hpp>

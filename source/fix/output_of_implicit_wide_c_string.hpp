@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: utf-8 with BOM ∩
-// #include <stdlib/workarounds/output_of_implicit_wide_c_string.hpp>
+// #include <stdlib/fix/output_of_implicit_wide_c_string.hpp>
 //
 // This is a fix for a defect in standard library, where an object that's implicitly
 // convertible to `char const*` /can/ be output to a narrow stream, but an object

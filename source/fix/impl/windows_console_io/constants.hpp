@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: utf-8 with BOM ∩
-// #include <stdlib/workarounds/impl/windows_console_io/constants.hpp>
+// #include <stdlib/fix/impl/windows_console_io/constants.hpp>
 //
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 

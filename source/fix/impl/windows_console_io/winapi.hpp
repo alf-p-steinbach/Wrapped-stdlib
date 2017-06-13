@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: utf-8 with BOM ∩
-// #include <stdlib/workarounds/impl/windows_console_io/Wide_input_buffer.hpp>
+// #include <stdlib/fix/impl/windows_console_io/Wide_input_buffer.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 #include <stdlib/algorithm.hpp>   // std::remove, std::equal
@@ -10,7 +10,7 @@
 #include <stdlib/extension/Size.hpp>            // stdlib::(Size, Index)
 #include <stdlib/extension/type_builders.hpp>   // ptr_
 
-#include <stdlib/workarounds/named_boolean_operators.hpp>       // and
+#include <stdlib/fix/named_boolean_operators.hpp>       // and
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::equal;
