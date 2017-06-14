@@ -8,14 +8,14 @@
 // not considered by overload resolution). I reported the defect years ago, as of
 // 2017. As far as I know nothing happened with that defect report.
 //
-// STDLIB_NO_WORKAROUND_OUTPUT_OF_IMPLICIT_WIDE_C_STRING suppresses the fix.
+// STDLIB_NO_OUTPUT_OF_IMPLICIT_WIDE_C_STRING_FIX suppresses the fix.
 //
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 #include <stdlib/extension/type_builders.hpp>   // stdlib::ref_
 #include <ostream>
 
-#ifndef STDLIB_NO_WORKAROUND_OUTPUT_OF_IMPLICIT_WIDE_C_STRING
+#ifndef STDLIB_NO_OUTPUT_OF_IMPLICIT_WIDE_C_STRING_FIX
     namespace std {
 
         inline auto operator<< (

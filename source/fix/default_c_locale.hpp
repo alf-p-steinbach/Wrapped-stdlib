@@ -5,7 +5,7 @@
 // • to make wide streams work in Unix-land, and
 // • to make narrow character classification functions work in Windows.
 //
-// STDLIB_NO_WORKAROUND_DEFAULT_C_LOCALE suppresses the locale auto-config.
+// STDLIB_NO_DEFAULT_C_LOCALE_NO suppresses the locale auto-config.
 //
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
@@ -35,7 +35,7 @@ namespace stdlib{ namespace impl{ namespace default_c_locale{
         }
     };
 
-#   ifndef STDLIB_NO_WORKAROUND_DEFAULT_C_LOCALE
+#   ifndef STDLIB_NO_DEFAULT_C_LOCALE_NO
         const bool dummy = Envelope::make_singleton();
 #   endif
 

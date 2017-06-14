@@ -3,7 +3,7 @@
 //
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
-#ifndef STDLIB_NO_WORKAROUND_CONSOLE_IO
+#ifndef STDLIB_NO_CONSOLE_IO_FIX
 #   ifdef _WIN32
 #       include <stdlib/fix/impl/windows_console_io.hpp>
 #   endif
