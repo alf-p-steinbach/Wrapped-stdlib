@@ -15,7 +15,7 @@ It’s the C++ standard library with fixes, including Windows UTF-8 console i/o.
   for some standard library issues, including that `<stdlib/fix/console_io.hpp>` makes Windows console i/o work for international text such as Norwegian “blåbærsyltetøy” (more precisely the *Basic Multilingual Plane* of Unicode is supported for the iostreams objects such as `cout`), with narrow text encoded as UTF-8;
 
 * ***C++ library header wrappers***  
-  for all C++ standard library headers, e.g. if you only want the `<iostreams>` header with the Windows console i/o fix, plus some, then include `<stdlib/iostream.hpp>` instead;
+  for all C++ standard library headers, e.g. if you only want the `<iostream>` header with the Windows console i/o fix, plus some, then include `<stdlib/iostream.hpp>` instead;
 
 * ***C library header wrappers***  
     e.g. `<stdlib/c/math.hpp>` which for maximal portability includes both `<cmath>` and `<math.h>` for you, and ditto for the other C library headers – I’ll have both, thanks!;
