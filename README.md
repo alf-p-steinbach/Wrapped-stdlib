@@ -5,6 +5,8 @@ About *stdlib*.
 
 It’s the C++ standard library with fixes, including Windows UTF-8 console i/o.
 
+---
+
 **TLDR**:
 
 *stdlib* is a pure header library that provides
