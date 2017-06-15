@@ -53,6 +53,7 @@ namespace stdlib{
         {
             ptr_<const char>    p_next_in       = start_of_buffer();
             ptr_<wchar_t>       p_next_out      = result;
+            bool                forced_advance  = false;
 
             for( ;; )
             {
@@ -77,10 +78,17 @@ namespace stdlib{
 
                     case Codecvt::error:
                     {
-                        *p_next_out++ = static_cast<wchar_t>( ascii::bad_char );
-                        if( p_next_in == p_start_in )
+                        if( p_next_in == p_start_in and not forced_advance )
                         {
+                            // We have tried to translate that ungood byte a second time.
+                            // Don't emit an `ascii::bad_char` this time; just skip it.
                              ++p_next_in;       // For g++. And possibly others.
+                             forced_advance = true;
+                        }
+                        else
+                        {
+                            *p_next_out++ = static_cast<wchar_t>( ascii::bad_char );
+                            forced_advance = false;
                         }
                         break;      // p_next_in points past the offending byte.
                     }
