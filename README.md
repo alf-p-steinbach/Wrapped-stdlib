@@ -23,7 +23,7 @@ It’s the C++ standard library with fixes, including Windows UTF-8 console i/o.
   ![Winnie the pooh](images/pooh.jpg)
 
 * ***functional area headers***  
-  for the C++ standard, e.g. all standard library iostreams headers plus the C standard library’s i/o headers are available via `<stdlib/all/io.hpp>`, which includes all headers in this category mentioned in the [header overview at cppreference.com](http://en.cppreference.com/w/cpp/header);
+  for the C++ standard, e.g. all standard library iostreams headers plus the C standard library’s i/o headers are available via `<stdlib/all/io.hpp>`, which includes all headers in this category mentioned in the [header overview at cppreference.com](http://en.cppreference.com/w/cpp/header); and
 
 * ***extensions***  
   such as `<stdlib/extension/Byte_to_wide_converter.hpp>`, which provides the class that’s used for narrow → wide encoding conversion in the Windows console i/o fix. There are no extensions other than the reusable parts of the library’s own code. But since this code is part of the library anyway, it’s provided in a reusable form.
