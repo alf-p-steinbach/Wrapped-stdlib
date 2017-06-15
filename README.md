@@ -136,6 +136,8 @@ With *stdlib*’s common headers, such as `<stdlib/c/math.hpp>`, or e.g. `<stdli
 
 Also, it’s nice to have working international text console i/o in Windows, with ordinary `char` based text representation.
 
+And hey, ANSI escape sequences, cool. :smiley:
+
 License.
 -----------
 
