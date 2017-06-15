@@ -10,7 +10,7 @@
 #include <stdlib/extension/Size.hpp>            // stdlib::(Size, Index)
 #include <stdlib/extension/type_builders.hpp>   // ptr_
 
-#include <stdlib/fix/named_boolean_operators.hpp>       // and
+#include <stdlib/fix/msvc_named_boolean_operators.hpp>      // and
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::equal;

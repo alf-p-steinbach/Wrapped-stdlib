@@ -15,10 +15,10 @@
 #include <iterator>     // std::(begin, end)
 #include <streambuf>    // std::basic_streambuf
 
-#include <stdlib/extension/Wide_to_byte_converter.hpp>                  // Wide_to_byte_converter
+#include <stdlib/extension/Wide_to_byte_converter.hpp>          // Wide_to_byte_converter
 #include <stdlib/fix/impl/windows_console_io/constants.hpp>     // general_buffer_size
 #include <stdlib/fix/impl/windows_console_io/winapi.hpp>        // winapi::*
-#include <stdlib/fix/named_boolean_operators.hpp>               // and, or
+#include <stdlib/fix/msvc_named_boolean_operators.hpp>          // and, or
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::array;
