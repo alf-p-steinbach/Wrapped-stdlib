@@ -78,6 +78,10 @@ namespace stdlib{
                     case Codecvt::error:
                     {
                         *p_next_out++ = static_cast<wchar_t>( ascii::bad_char );
+                        if( p_next_in == p_start_in )
+                        {
+                             ++p_next_in;       // For g++. And possibly others.
+                        }
                         break;      // p_next_in points past the offending byte.
                     }
 
