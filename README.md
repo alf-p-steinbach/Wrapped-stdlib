@@ -12,7 +12,7 @@ It’s the C++ standard library with fixes, including Windows UTF-8 console i/o.
 *stdlib* is a pure header library that provides
 
 * ***fixes***  
-  for some standard library issues, including that `<stdlib/iostream.hpp>` makes Windows console i/o work for international text such as Norwegian “blåbærsyltetøy” (more precisely the *Basic Multilingual Plane* of Unicode is supported for the iostreams objects such as `cout`), with narrow text encoded as UTF-8;
+  for some standard library issues, including that `<stdlib/fix/console_io.hpp>` makes Windows console i/o work for international text such as Norwegian “blåbærsyltetøy” (more precisely the *Basic Multilingual Plane* of Unicode is supported for the iostreams objects such as `cout`), with narrow text encoded as UTF-8;
 
 * ***C++ library header wrappers***  
   for all C++ standard library headers, e.g. if you only want the `<iostreams>` header with the Windows console i/o fix (plus some), then include `<stdlib/iostream.hpp>` instead;
