@@ -27,7 +27,6 @@ namespace stdlib{
         Codecvt_state                       conversion_state_{};    // mb_state
         array_of_<in_buf_size, char>        in_buf_;
         Size                                n_buffered_ = 0;
-        bool                                forced_advance_  = false;
 
         auto start_of_buffer()  -> ptr_<char>       { return in_buf_.data(); }
         auto put_position()     -> ptr_<char>       { return start_of_buffer() + n_buffered_; }
@@ -73,7 +72,6 @@ namespace stdlib{
                     {
                         copy<ptr_<const char>>( p_next_in, put_position(), start_of_buffer() );
                         n_buffered_ = put_position() - p_next_in;
-                        forced_advance_ = false;
                         return p_next_out - result;
                     }
 
