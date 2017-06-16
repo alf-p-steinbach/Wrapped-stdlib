@@ -27,6 +27,7 @@ namespace stdlib{
         Codecvt_state                       conversion_state_{};    // mb_state
         array_of_<in_buf_size, char>        in_buf_;
         Size                                n_buffered_ = 0;
+        bool                                forced_advance_  = false;
 
         auto start_of_buffer()  -> ptr_<char>       { return in_buf_.data(); }
         auto put_position()     -> ptr_<char>       { return start_of_buffer() + n_buffered_; }
@@ -53,7 +54,6 @@ namespace stdlib{
         {
             ptr_<const char>    p_next_in       = start_of_buffer();
             ptr_<wchar_t>       p_next_out      = result;
-            bool                forced_advance  = false;
 
             for( ;; )
             {
@@ -73,23 +73,21 @@ namespace stdlib{
                     {
                         copy<ptr_<const char>>( p_next_in, put_position(), start_of_buffer() );
                         n_buffered_ = put_position() - p_next_in;
+                        forced_advance_ = false;
                         return p_next_out - result;
                     }
 
                     case Codecvt::error:
                     {
-                        if( p_next_in == p_start_in and not forced_advance )
-                        {
-                            // We have tried to translate that ungood byte a second time.
-                            // Don't emit an `ascii::bad_char` this time; just skip it.
-                             ++p_next_in;       // For g++. And possibly others.
-                             forced_advance = true;
-                        }
-                        else
-                        {
-                            *p_next_out++ = static_cast<wchar_t>( ascii::bad_char );
-                            forced_advance = false;
-                        }
+                        *p_next_out++ = static_cast<wchar_t>( ascii::bad_char );
+    // The Holy Standard (C++14) declares, in its §22.4.1.4.2/2:
+    // “[the do_in function] Stops if it encounters a character it cannot convert.
+    // It always leaves the from_next and to_next pointers pointing one beyond the
+    // last element successfully converted.” But MSVC 2017 moves it one more byte,
+    // which is practical but non-conforming behavior. So, don't do it for MSVC:
+    #if !defined( _MSC_VER )
+                        ++p_next_in;
+    #endif
                         break;      // p_next_in points past the offending byte.
                     }
 
