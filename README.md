@@ -91,7 +91,9 @@ The result in Windows should be like this, where `cl` is the Visual C++ compiler
 
 (I added coloration of the screenshot to identify the typed commands as such, but you will likely see all Windows console window text in the same color).
 
-5. Okay. That’s it! You’re ready to go! Yay! Woohoo! Wow! Yesss!
+5. Okay. That’s it! You’re ready to go! Yay! Woohoo!  
+   Wow!  
+   *Yesss*!
 
 Background &amp; goal.
 ----
