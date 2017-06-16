@@ -39,7 +39,7 @@ How to install and use *stdlib* – a short intro.
 
 2. Make a copy of, or possibly a link to, the library’s `source` folder. Call that copy or link `stdlib`, to make `#include`s work. Place it in a folder where your compiler looks for include files. Tip:
 
-   * The g++ compiler checks the `CPATH` environment variable to find which folders it should look for headers in, and the Visual C++ compiler checks the `INCLUDE` environment variable.
+   * The g++ compiler checks the `CPATH` environment variable to find which additional folders it should look for headers in, and the Visual C++ compiler checks the `INCLUDE` environment variable.
 
 3. Then try a simplest possible example, i.e. “Hello, world!”:
 
