@@ -15,20 +15,20 @@ It’s the C++ standard library with fixes, including Windows UTF-8 console i/o.
   for some standard library issues, including that `<stdlib/fix/console_io.hpp>` makes Windows console i/o work for international text such as Norwegian “blåbærsyltetøy” (more precisely the *Basic Multilingual Plane* of Unicode is supported for the iostreams objects such as `cout`), with narrow text encoded as UTF-8;
 
 * ***C++ library header wrappers***  
-  for all C++ standard library headers, e.g. if you only want the `<iostream>` header with the Windows console i/o fix, plus some, then include `<stdlib/iostream.hpp>` instead;
+  for all C++ standard library headers, e.g. you can just include `<stdlib/iostream.hpp>` where you want the `<iostream>` header with the Windows console i/o fix, plus some;
 
 * ***C library header wrappers***  
-    e.g. `<stdlib/c/math.hpp>` which for maximal portability includes both `<cmath>` and `<math.h>` for you, and ditto for the other C library headers – I’ll have both, thanks!;
+    e.g. `<stdlib/c/math.hpp>` which for maximal portability includes both `<cmath>` and `<math.h>` for you – I’ll have both, thanks!, and ditto for the other C library headers;
 
   ![Winnie the pooh](images/pooh.jpg)
 
 * ***functional area headers***  
-  for the C++ standard, e.g. all standard library iostreams headers plus the C standard library’s i/o headers are available via `<stdlib/all/io.hpp>`, which includes all headers in this category mentioned in the [header overview at cppreference.com](http://en.cppreference.com/w/cpp/header); and
+  for the C++ standard library, e.g. just include  `<stdlib/all/io.hpp>` to get all the C++ iostreams headers plus the C standard library’s i/o headers, more precisely all headers in this category mentioned in the [header overview at cppreference.com](http://en.cppreference.com/w/cpp/header); and
 
 * ***extensions***  
-  such as `<stdlib/extension/Byte_to_wide_converter.hpp>`, which provides the class that’s used for narrow → wide encoding conversion in the Windows console i/o fix. There are no extensions other than the reusable parts of the library’s own code. But since this code is part of the library anyway, it’s provided in a reusable form.
+  such as `<stdlib/extension/Byte_to_wide_converter.hpp>`, which provides the class that’s used for narrow → wide encoding conversion in the Windows console i/o fix. Most of the extensions are part of the library implementation anyway, so they’re provided in a reusable form in the public interface. Those that are not directly used in the current library code, are provided for completeness.
 
-The UTF-8 console i/o functionality in Windows is a portable implementation and is therefore for C++ iostreams only, such as `cout`, not for C level `FILE*` i/o like `printf`.
+The UTF-8 console i/o functionality in Windows is a portable iostreams buffer implementation and is therefore for C++ iostreams only, such as `cout`, not for C level `FILE*` i/o like `printf`.
 
 Other fixes & nice-to-have’s include • support for ANSI escape sequences, e.g. to produce colored console text, in Windows 10 and later; • setting the default locale in C and C++ to the user’s native locale, which makes the wide iostreams work for international text in \*nix-land; • setting UTF-8 as the basic execution character set (i.e. for narrow literals) in Visual C++; • support for the C++ standard’s alternative keywords such as `and`, `or` and `not`, in Visual C++; and • support for output of something that converts implicitly to `wchar const*`, on a wide stream, corresponding to how something that converts implicitly to `char const*` can be output an a narrow stream.
 
