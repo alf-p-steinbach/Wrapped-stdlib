@@ -95,6 +95,72 @@ The result in Windows should be like this, where `cl` is the Visual C++ compiler
    Wow!  
    *Yesss*!
 
+How to use *stdlib* fixes with existing code.
+---------------------------------------------
+
+Say you have some existing code using the C++ standard library, like this (hypothetical) textbook example program:
+
+```c++
+#include <iostream>
+#include <string>
+using namespace std;
+
+auto main() -> int
+{
+    cout << "Hi, what's your name? ";
+    string name;
+    getline( cin, name );
+    cout << "Pleased to meet you, " << name << "!" << endl;
+}
+```
+
+In Linux or on the Mac this Just Works&trade;, due to UTF-8 encoding of narrow text as the *de facto* standard there, but in Windows, with no UTF-8 locale, there’s trouble:
+
+<pre>
+[C:\my\dev\libraries\stdlib\examples\personalized_greeting]
+&gt; <i>g++ greeting.textbook_version.cpp</i>
+
+[C:\my\dev\libraries\stdlib\examples\personalized_greeting]
+&gt; <i>type norwegian_russian_name.utf-16.txt</i>
+Pål Аркадий Jørgen Sæther
+
+[C:\my\dev\libraries\stdlib\examples\personalized_greeting]
+&gt; <i>a</i>
+Hi, what's your name? <i>Pål Аркадий Jørgen Sæther</i>
+Pleased to meet you, Pål ??????? Jorgen Sæther!
+
+[C:\my\dev\libraries\stdlib\examples\personalized_greeting]
+&gt; <i>_</i>
+</pre>
+
+![Winnie the pooh](images/personalized_greeting.take_1.colorized.annotated.png)
+
+You can apply the *stdlib* console i/o fix just by including the `<stdlib/fix/console_io.hpp>` header. And you can do that in the compiler invocation, as a **forced include**. I.e. there’s no need to edit the existing source code.
+
+With g++ the `-include` option gives a forced include (with MSVC the corresponding option is `/FI`):
+
+<pre>
+[C:\my\dev\libraries\stdlib\examples\personalized_greeting]
+&gt; <i>g++ greeting.textbook_version.cpp -include stdlib/fix/console_io.hpp</i>
+
+[C:\my\dev\libraries\stdlib\examples\personalized_greeting]
+&gt; <i>type norwegian_russian_name.utf-16.txt</i>
+Pål Аркадий Jørgen Sæther
+
+[C:\my\dev\libraries\stdlib\examples\personalized_greeting]
+&gt; <i>a</i>
+Hi, what's your name? <i>Pål Аркадий Jørgen Sæther</i>
+Pleased to meet you, Pål Аркадий Jørgen Sæther!
+
+[C:\my\dev\libraries\stdlib\examples\personalized_greeting]
+&gt; _
+</pre>
+
+![Winnie the pooh](images/personalized_greeting.take_2.colorized.annotated.png)
+
+Yay! Old programs good as new!
+
+
 Background &amp; goal.
 ----
 Two C++ infra-structure developments have made *stdlib*’s “always UTF-8” a practical, instead of just an idealistic, choice:
