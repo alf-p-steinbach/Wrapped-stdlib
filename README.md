@@ -193,16 +193,27 @@ auto main() -> int
 
 This same code works in both *nix-land and Windows, when the name input by the user contains non-English characters.
 
+About the library name *stdlib*.
+---------------
+
+*stdlib* started as a folder in the source tree of another project, where it was named for what it contained: access to the C++ standard library with necessary fixes applied, and nothing else.
+
+It would be much work to change the name, and it fits (the library doesn't provide much more than just what a more practically usable definition and implementation of the C++ standard library would), so I kept it.
+
+C++ programmers are generally quite intelligent and have to deal with multiple meanings of terms all the time, so there’s little or no risk of confusion. But I think the name can possibly lead to discussion among beginners. So, to be more precise than the in-short explanation at the beginning of this document: *stdlib* is a convenient way to access the implementation of the C++ standard library that your compiler provides, with a number of fixes applied, and with functional area headers.
+
 How can you benefit from *stdlib*?
 ------------------------------------------------------
 
 With *stdlib*’s common headers, such as `<stdlib/c/math.hpp>`, or e.g. `<stdlib/all/io.hpp>`,
 
-* there are fewer headers to include and possibly forget to include in your source code,
-* portability problems due to e.g. referring unqualified to `printf` after only including `<cstdio>`, are reduced or eliminated, and
-* writing small programs is a breeze compared with direct use of the standard library.
+* command line tools built with *stdlib* can handle general Unicode text in Windows, which is likely to improve productivity,
+* the functional area headers means there are fewer headers to include and possibly forget to include in your source code, e.g. just using `<stdlib/all/basics.hpp>` instead of direct use of (a large number of C++ standard library headers including) `<string>`, `<vector>`, `<stdlib.h>`, `<stdexcept>`, `<iostream>`, `<iomanip` etc. etc.,
+* *stdlib*, or an equivalent library, reduces or eliminates portability problems due to e.g. referring unqualified to `printf` after only including `<cstdio>`,
+* the functional area headers also support use of a precompiled header to speed up builds, with `<stdlib/all/of_it.hpp>` playing the rôle of g++’s `<bits/stdc++.h>`, and
+* *stdlib* is a point of indirection where you can centralize all your fixes of problems with various C++ standard library implementations, and where such fixes can be provided in new versions of the library.
 
-Also, it’s nice to have working international text console i/o in Windows, with ordinary `char` based text representation.
+Also, it’s nice to have portable code where ordinary `char` based international text console i/o works in Windows.
 
 And hey, ANSI escape sequences, cool. :smiley:
 
