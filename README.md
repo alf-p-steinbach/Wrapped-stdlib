@@ -205,9 +205,7 @@ C++ programmers are generally quite intelligent and have to deal with multiple m
 How can you benefit from *stdlib*?
 ------------------------------------------------------
 
-With *stdlib*’s common headers, such as `<stdlib/c/math.hpp>`, or e.g. `<stdlib/all/io.hpp>`,
-
-* command line tools built with *stdlib* can handle general Unicode text in Windows, which is likely to improve productivity,
+* Command line tools built with *stdlib* can handle general Unicode text in Windows, which is likely to improve productivity,
 * the functional area headers means there are fewer headers to include and possibly forget to include in your source code, e.g. just using `<stdlib/all/basics.hpp>` instead of direct use of (a large number of C++ standard library headers including) `<string>`, `<vector>`, `<stdlib.h>`, `<stdexcept>`, `<iostream>`, `<iomanip` etc. etc.,
 * *stdlib*, or an equivalent library, reduces or eliminates portability problems due to e.g. referring unqualified to `printf` after only including `<cstdio>`,
 * the functional area headers also support use of a precompiled header to speed up builds, with `<stdlib/all/of_it.hpp>` playing the rôle of g++’s `<bits/stdc++.h>`, and
