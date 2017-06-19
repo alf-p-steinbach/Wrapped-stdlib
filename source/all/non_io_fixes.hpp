@@ -5,5 +5,6 @@
 #include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>     // BEST IF FIRST.
 
 #include <stdlib/fix/default_locale.hpp>
+#include <stdlib/fix/gcc_random_device.hpp>
 #include <stdlib/fix/msvc_utf8_literals.hpp>
 #include <stdlib/fix/msvc_named_boolean_operators.hpp>

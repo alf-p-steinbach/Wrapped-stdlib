@@ -4,5 +4,6 @@
 // Random number generators and distributions.
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
+#include <stdlib/fix/gcc_random_device.hpp>
 #include <random>
 #include <stdlib/all/non_io_fixes.hpp>
