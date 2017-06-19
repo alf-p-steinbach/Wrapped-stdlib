@@ -6,3 +6,4 @@
 
 #include <cstdarg>
 #include <stdarg.h>
+#include <stdlib/all/non_io_fixes.hpp>

@@ -6,3 +6,4 @@
 
 #include <sstream>
 #include <stdlib/fix/output_of_implicit_wide_c_string.hpp>
+#include <stdlib/all/non_io_fixes.hpp>

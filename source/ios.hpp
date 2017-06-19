@@ -6,3 +6,4 @@
 
 #include <stdlib/ioswfd.hpp>
 #include <ios>
+#include <stdlib/all/non_io_fixes.hpp>

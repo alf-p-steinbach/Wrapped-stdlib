@@ -5,4 +5,5 @@
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 #include <ostream>
-#include <stdlib/fix/output_of_implicit_wide_c_string.hpp>
+#include <stdlib/all/fixes.hpp>
+#include <stdlib/all/non_io_fixes.hpp>

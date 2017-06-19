@@ -16,3 +16,5 @@
 #else
 #   error "Sorry, <filesystem> is apparently not available with this compiler & options."
 #endif
+
+#include <stdlib/all/non_io_fixes.hpp>

@@ -6,3 +6,4 @@
 
 #include <cinttypes>
 #include <inttypes.h>
+#include <stdlib/all/non_io_fixes.hpp>

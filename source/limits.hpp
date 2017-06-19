@@ -5,3 +5,4 @@
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 #include <limits>       // std::numeric_limits etc.
+#include <stdlib/all/non_io_fixes.hpp>

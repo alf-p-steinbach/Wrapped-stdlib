@@ -6,3 +6,4 @@
 
 #include <cerrno>
 #include <errno.h>
+#include <stdlib/all/non_io_fixes.hpp>

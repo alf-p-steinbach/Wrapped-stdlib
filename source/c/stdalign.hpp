@@ -9,3 +9,5 @@
 // The <stdalign.h> isn't needed (<cstdalign.> only defines 2 macros) and is not
 // provided by Visual C++ 2017, so here it's simply not included.
 // -- no -- #include <stdalign.h>
+
+#include <stdlib/all/non_io_fixes.hpp>

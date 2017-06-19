@@ -11,3 +11,4 @@
 
 #include <ctgmath>          // Non-C++-compatible macro definitions, + includes.
 // #include <tgmath.h>      // Not available with Visual C++ 2017.
+#include <stdlib/all/non_io_fixes.hpp>

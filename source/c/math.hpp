@@ -29,3 +29,4 @@
 #include <stdlib/extension/math_constants.hpp>
 #include <cmath>
 #include <math.h>
+#include <stdlib/all/non_io_fixes.hpp>

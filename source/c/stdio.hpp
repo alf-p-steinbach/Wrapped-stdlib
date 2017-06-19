@@ -6,4 +6,4 @@
 
 #include <cstdio>
 #include <stdio.h>
-#include <stdlib/fix/default_c_locale.hpp>
+#include <stdlib/all/non_io_fixes.hpp>
