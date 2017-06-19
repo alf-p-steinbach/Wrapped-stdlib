@@ -1,4 +1,6 @@
 ﻿// Source encoding: utf-8 with BOM ∩
+//
+// Define STDLIB_NO_MATH_CONSTANTS to turn off inclusion of the constants.
 
 #include <stdlib/all/basics.hpp>
 using namespace std;

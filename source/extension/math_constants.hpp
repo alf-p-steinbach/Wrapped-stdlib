@@ -7,6 +7,7 @@
 
 #include <stdlib/fix/math_constants_availability.hpp>
 
+#ifndef STDLIB_NO_MATH_CONSTANTS
 namespace stdlib{
     inline namespace math {
         const auto e                = M_E;              // e              2.71828182845904523536
@@ -24,3 +25,4 @@ namespace stdlib{
         const auto inv_sqrt2        = M_SQRT1_2;        // 1/sqrt(2)      0.707106781186547524401
     }  // namespace math                                // 
 }  // namespace stdlib
+#endif
