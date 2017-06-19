@@ -3,9 +3,7 @@
 // Define STDLIB_NO_NAMED_BOOLEAN_OPERATORS_FIX to turn off <iso646.h> inclusion.
 
 #include <stdlib/all/basics.hpp>
-using std::cout;
-using std::cerr;
-using std::endl;
+using namespace std;
 namespace m = stdlib::math;
 
 auto main( int n_args, char* args[] )
