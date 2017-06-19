@@ -6,3 +6,7 @@
 
 #include <string>
 #include <stdlib/all/non_io_fixes.hpp>
+
+#ifndef NO_STDLIB_STRING_LITERALS
+    using namespace std::string_literals;       // E.g., `"Hi there!"s`.
+#endif
