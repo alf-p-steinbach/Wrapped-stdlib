@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: utf-8 with BOM ∩
-// #include <stdlib/math_h.cpp>
+// #include <stdlib/math.hpp>
 //
 // Common math functions.
 // Addditionally (a de facto standard) defines the following constants:
