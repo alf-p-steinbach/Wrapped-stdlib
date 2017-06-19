@@ -7,7 +7,6 @@
 using std::cout;
 using std::endl;
 using std::setw;
-using std::to_string;
 
 auto main( int n_args, char* args[] )
     -> int
