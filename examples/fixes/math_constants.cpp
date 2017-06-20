@@ -8,6 +8,7 @@ namespace m = stdlib::math;
 
 auto main() -> int
 {
+    cout << "Did you know, pi is roughly " << M_PI << " :-)" << endl;
     cout << setprecision( numeric_limits<double>::digits10 );
-    cout << "Did you know, that π ≈ " << m::pi << "?" << endl;
+    cout << "Or more precisely, π ≈ " << m::pi << "." << endl;
 }

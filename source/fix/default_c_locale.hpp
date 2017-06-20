@@ -5,13 +5,18 @@
 // • to make wide streams work in Unix-land, and
 // • to make narrow character classification functions work in Windows.
 //
-// STDLIB_NO_DEFAULT_C_LOCALE_NO suppresses the locale auto-config.
+// STDLIB_NO_DEFAULT_C_LOCALE_FIX suppresses the locale auto-config.
 //
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 #include <assert.h>
 #include <locale.h>
 #include <clocale>
+
+#ifdef STDLIB_DEBUG_C_LOCALE
+#   include <stdio.h>
+#   include <cstdio>
+#endif
 
 namespace stdlib{ namespace impl{ namespace default_c_locale{
 
@@ -24,6 +29,10 @@ namespace stdlib{ namespace impl{ namespace default_c_locale{
         Envelope()
         {
             char const* const s = setlocale( LC_ALL, "" );  assert( s != nullptr );
+            (void) s;
+            #ifdef STDLIB_DEBUG_C_LOCALE
+                fprintf( stderr, "!C locale set to \"%s\".\n", s ); fflush( stderr );
+            #endif
         }
 
     public:
@@ -35,7 +44,7 @@ namespace stdlib{ namespace impl{ namespace default_c_locale{
         }
     };
 
-#   ifndef STDLIB_NO_DEFAULT_C_LOCALE_NO
+#   ifndef STDLIB_NO_DEFAULT_C_LOCALE_FIX
         const bool dummy = Envelope::make_singleton();
 #   endif
 
