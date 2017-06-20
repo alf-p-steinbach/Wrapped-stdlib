@@ -6,7 +6,7 @@
 // the article titled “Console Virtual Terminal Sequences” in MSDN Library
 // (Microsoft Developer Network Library), which was available at
 // <url: https://msdn.microsoft.com/en-us/library/windows/desktop/mt638032(v=vs.85).aspx>
-// at the time when I this example program was written, medio June 2017.
+// at the time when I wrote this example program, medio June 2017.
 
 #include <stdlib/all/basics.hpp>
 using namespace std;
