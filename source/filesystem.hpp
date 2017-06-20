@@ -14,7 +14,9 @@
         using namespace std::experimental;
     }  // namespace std;
 #else
-#   error "Sorry, <filesystem> is apparently not available with this compiler & options."
+#   ifdef _MSC_VER
+#       error "<filesystem> is apparently not available (use option `/std:c++latest`?)."
+#   else
+#       error "<filesystem> is apparently not available with this compiler & options."
+#   endif
 #endif
-
-#include <stdlib/all/non_io_fixes.hpp>
