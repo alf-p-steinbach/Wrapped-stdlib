@@ -10,4 +10,4 @@
 
 #include <stdlib/extension/hopefully_and_fail.hpp>  // stdlib::(hopefully, fail)
 #include <stdlib/extension/Size.hpp>                // stdlib::(Index, Size)
-#include <stdlib/extension/type_builders.hpp>       // stdlib::(ref, ptr, ...)
+#include <stdlib/extension/type_builders.hpp>       // stdlib::(ref_, ptr_, ...)
