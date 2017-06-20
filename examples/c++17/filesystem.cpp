@@ -10,8 +10,8 @@ namespace fs = std::filesystem;
 
 auto main( int, char* args[] ) -> int
 {
-    auto const program_path         = fs::absolute( args[0] );
-    auto const program_folder_path  = program_path.parent_path();
+    const auto program_path         = fs::absolute( args[0] );
+    const auto program_folder_path  = program_path.parent_path();
 
     cout
         << "This program resides in “"
