@@ -11,7 +11,7 @@ auto main() -> int
     cout << u8"Every 日本国 кошка likes Norwegian blåbærsyltetøy." << endl;
     cout << "I said, every 日本国 кошка likes Norwegian blåbærsyltetøy." << endl;
     cout << endl;
-    cout << "By the way, what's your name? ";
+    cout << "By the way, what’s your name? ";
     string name;
     getline( cin, name );
     cout << "Pleased to meet you, " << name << "!" << endl;
