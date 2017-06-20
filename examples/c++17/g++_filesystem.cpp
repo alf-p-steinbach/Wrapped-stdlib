@@ -1,10 +1,15 @@
 ﻿// Source encoding: utf-8 with BOM ∩
 //
-// For Visual C++ 2017 and earlier compile with option “/std::c++latest”.
-// For g++, “g++ filesystem.cpp -D STDLIB_USE_EXPERIMENTAL_CPP17 -lstdc++fs”.
+// g++ "g++_filesystem.cpp" -lstdc++fs -include stdlib/fix/console_io.hpp
 
-#include <stdlib/all/basics.hpp>
-#include <stdlib/filesystem.hpp>
+#include <iostream>
+#include <locale>
+#include <string>
+#include <experimental/string_view>
+#include <experimental/filesystem>
+namespace std{
+    namespace filesystem = experimental::filesystem;
+}
 using namespace std;
 namespace fs = std::filesystem;
 

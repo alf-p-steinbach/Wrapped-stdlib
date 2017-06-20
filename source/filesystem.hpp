@@ -10,13 +10,16 @@
 #   include <filesystem>
 #elif STDLIB_USE_EXPERIMENTAL_CPP17
 #   include <experimental/filesystem>
-    namespace std {
-        using namespace std::experimental;
-    }  // namespace std;
 #else
 #   ifdef _MSC_VER
-#       error "<filesystem> is apparently not available (use option `/std:c++latest`?)."
+#       error "<filesystem> appears not available (try option `/std:c++latest`?)."
 #   else
-#       error "<filesystem> is apparently not available with this compiler & options."
+#       error "<filesystem> appears not available (try define STDLIB_USE_EXPERIMENTAL_CPP17?)."
 #   endif
+#endif
+
+#ifdef STDLIB_HOIST_UP_FILESYSTEM_NAMESPACE
+    namespace std {
+        namespace filesystem = experimental::filesystem;
+    }  // namespace std;
 #endif

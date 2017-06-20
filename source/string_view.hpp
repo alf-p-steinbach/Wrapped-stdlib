@@ -11,7 +11,7 @@
 #elif STDLIB_USE_EXPERIMENTAL_CPP17
 #   include <experimental/string_view>
     namespace std {
-        using namespace std::experimental;
+        using experimental::string_view;
     }  // namespace std;
 #else
 #   ifdef _MSC_VER
