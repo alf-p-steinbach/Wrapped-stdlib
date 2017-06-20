@@ -4,7 +4,6 @@
 
 #include <stdlib/all/basics.hpp>
 using namespace std;
-namespace m = stdlib::math;
 
 auto main( int n_args, char* args[] )
     -> int
