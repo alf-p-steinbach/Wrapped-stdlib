@@ -1,6 +1,6 @@
 ﻿// Source encoding: utf-8 with BOM ∩
 //
-// Define STDLIB_NO_ANSI_ESCAPES to not enable interpretation of escape codes.
+// Define STDLIB_NO_ANSI_ESCAPES_FIX to not enable interpretation of escape codes.
 // (Depending on the system they might still be interpreted, but in Windows stdlib
 // won't then call SetConsoleMode to tell the console window to interpret them.)
 //
