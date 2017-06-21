@@ -110,6 +110,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
                     default_byte_buffer_[i] = byte_streams_[i]->rdbuf( byte_buffers[i] );
                     default_wide_buffer_[i] = wide_streams_[i]->rdbuf( wide_buffers[i] );
 
+#ifndef STDLIB_NO_ANSI_ESCAPES
                     if( i > 0 )
                     {
                         // enable_ansi_escape_codes() doesn't work with a direct i/o
@@ -123,6 +124,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
                             original_console_mode_ = old_mode;
                         }
                     }
+#endif
                 }
             }
         }

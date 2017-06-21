@@ -1,6 +1,8 @@
 ﻿// Source encoding: utf-8 with BOM ∩
 //
-// Define STDLIB_NO_MATH_CONSTANTS to turn off inclusion of the constants.
+// Define STDLIB_NO_ANSI_ESCAPES to not enable interpretation of escape codes.
+// (Depending on the system they might still be interpreted, but in Windows stdlib
+// won't then call SetConsoleMode to tell the console window to interpret them.)
 //
 // For documentation of the sequences supported by Windows 10 console windows, see
 // the article titled “Console Virtual Terminal Sequences” in MSDN Library
