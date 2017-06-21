@@ -185,7 +185,7 @@ Two C++ infra-structure developments have made *stdlib*’s “always UTF-8” a
 
 This means that simple novice programs, also after the first “Hello, world!”, can work well with UTF-8 console i/o in Windows. 
 
-However, Visual C++ 2017 and the current MinGW g++ compiler’s UTF-8 execution character set support is only partial. For example, command line arguments, the arguments of `main`, are encoded as Windows ANSI no matter what options you use, with both MSVC and g++, and output of a narrow string via a wide stream interprets it as Windows ANSI-encoded, with both MSVC and g++. But having UTF-8 encoded ordinary narrow literals goes 80% of the way. :)
+However, Visual C++ 2017 and the current MinGW g++ compiler’s UTF-8 execution character set support is only partial. For example, in Windows command line arguments, the arguments of `main`, are encoded as Windows ANSI no matter what options you use, with both MSVC and g++, and output of a narrow string via a wide stream interprets it as Windows ANSI-encoded, with both MSVC and g++. But having UTF-8 encoded ordinary narrow literals goes 80% of the way. :)
 
 The main goal is to enable learners and professionals who write small tool or exploratory programs, to be able to do that simply, and have those programs work with international text.
 
