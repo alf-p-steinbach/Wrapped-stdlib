@@ -2,6 +2,8 @@
 // #include <stdlib/extension/Wide_to_byte_converter.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
+#include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
+
 #include <algorithm>    // std::copy
 #include <assert.h>     // assert
 
@@ -99,7 +101,7 @@ namespace stdlib{
     // It always leaves the from_next and to_next pointers pointing one beyond the
     // last element successfully converted.” But MSVC 2017 moves it one more unit,
     // which is practical but non-conforming behavior. So, don't do it for MSVC:
-    #if !defined( _MSC_VER )
+    #if !defined( _MSC_VER )    // TODO: Replace with check of functionality!
                         ++p_next_in;
     #endif
                         break;      // p_next_in points past the offending unit.

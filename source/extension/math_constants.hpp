@@ -5,6 +5,8 @@
 //
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
+#include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
+
 #include <stdlib/fix/math_constants_availability.hpp>
 
 #ifndef STDLIB_NO_MATH_CONSTANTS

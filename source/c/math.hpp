@@ -23,6 +23,8 @@
 //
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
+#include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
+
 // At least with MSVC this works for defining M_PI etc. even if <math.h> has
 // been previously included - the definitions are outside the normal guard.
 // But just to be on the safe safe, include the constant defs first.

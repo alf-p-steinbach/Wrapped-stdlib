@@ -3,3 +3,4 @@
 *.out
 explore_issues
 writings
+examples/basics/personalized_greeting/greeting.py

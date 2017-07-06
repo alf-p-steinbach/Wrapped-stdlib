@@ -2,7 +2,8 @@
 #include <stdlib/all/basics.hpp>
 using namespace std;
 
-auto main() -> int
+auto main()
+    -> int
 {
     wcout << L"Hi, what’s your name? ";
     wstring name;

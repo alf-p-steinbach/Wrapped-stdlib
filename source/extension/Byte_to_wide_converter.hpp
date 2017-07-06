@@ -2,6 +2,8 @@
 // #include <stdlib/extension/Byte_to_wide_converter.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
+#include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
+
 #include <algorithm>    // std::copy
 #include <assert.h>     // assert
 #include <iterator>     // std::(begin, end)

@@ -2,6 +2,8 @@
 // #include <stdlib/extension/Codecvt.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
+#include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
+
 #include <codecvt>                              // std::codecvt_utf8
 #include <stdlib/extension/Byte_order.hpp>      // stdlib::system_byte_order()
 

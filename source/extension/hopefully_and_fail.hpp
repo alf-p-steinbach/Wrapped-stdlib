@@ -2,6 +2,8 @@
 // #include <stdlib/extension/hopefully_and_fail.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
+#include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
+
 #include <stdlib/extension/STDLIB_NORETURN.hpp>
 #include <stdlib/extension/type_builders.hpp>       // stdlib::(ref_)
 

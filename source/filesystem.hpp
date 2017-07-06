@@ -5,6 +5,7 @@
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 #include <stdlib/extension/version.hpp>         // STDLIB_COMPILER_SUPPORTS_CPP17
+#include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
 
 #if STDLIB_COMPILER_SUPPORTS_CPP17
 #   include <filesystem>

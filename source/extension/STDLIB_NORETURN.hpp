@@ -3,6 +3,8 @@
 //
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
+#include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
+
 #if !defined( STDLIB_NORETURN )
 #   if defined( _MSC_VER )
 #       define STDLIB_NORETURN      __declspec( noreturn )

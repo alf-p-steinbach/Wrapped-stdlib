@@ -3,6 +3,8 @@
 //
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
+#include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
+
 #ifndef STDLIB_COMPILER_SUPPORTS_CPP11
 #   define STDLIB_COMPILER_SUPPORTS_CPP11 (__cplusplus >= 201103)
 #endif
