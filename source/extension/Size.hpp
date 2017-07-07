@@ -1,5 +1,7 @@
 ﻿#pragma once    // Source encoding: utf-8 with BOM ∩
 // #include <stdlib/extension/Size.hpp>
+//
+// Size types and signed result size functions.
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 #include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
@@ -41,7 +43,8 @@ namespace stdlib{
     };
 
     // As of C++14 this won't be constexpr for an argument that is a formal
-    // argument of the calling function. Hence the macro given above.
+    // argument of the calling function. This is the same issue as with
+    // C++17 std::size, at least in clang ATTOW. Hence the macro given above.
     template< class Type >
     constexpr inline auto array_size( Type const& a )
         -> Size
