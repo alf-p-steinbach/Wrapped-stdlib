@@ -12,7 +12,7 @@
 #include <stdlib/extension/Codecvt.hpp>         // stdlib::(Codecvt, Codecvt_result)
 #include <stdlib/extension/Size.hpp>            // stdlib::(Size, Index)
 #include <stdlib/extension/type_builders.hpp>   // stdlib::(ptr_, raw_array_of_)
-#include <stdlib/extension/impl/converter_buffer_size.hpp>
+#include <stdlib/_impl/converter_buffer_size.hpp>
 
 namespace stdlib{
     using std::begin;

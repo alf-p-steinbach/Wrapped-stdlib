@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: utf-8 with BOM ∩
-// #include <stdlib/fix/impl/windows_console_io.hpp>
+// #include <stdlib/_impl/windows_console_io.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 #ifndef _WIN32
@@ -11,9 +11,9 @@
 
 #include <stdlib/extension/type_builders.hpp>       // ptr_
 #include <stdlib/fix/default_locale.hpp>
-#include <stdlib/fix/impl/windows_console_io/Byte_console_input_buffer.hpp>
-#include <stdlib/fix/impl/windows_console_io/Console_output_buffer_.hpp>
-#include <stdlib/fix/impl/windows_console_io/Wide_console_input_buffer.hpp>
+#include <stdlib/_impl/windows_console_io/Byte_console_input_buffer.hpp>
+#include <stdlib/_impl/windows_console_io/Console_output_buffer_.hpp>
+#include <stdlib/_impl/windows_console_io/Wide_console_input_buffer.hpp>
 
 #include <io.h>     // _isatty, _get_osfhandle (Visual C++ extensions supported by g++).
 
@@ -118,7 +118,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
                         const auto h = reinterpret_cast<winapi::Handle>(
                             _get_osfhandle( i )
                             );
-                        winapi::DWord const old_mode = enable_ansi_escape_codes( h );
+                        winapi::DWord const old_mode = apiwrap::enable_ansi_escape_codes( h );
                         if( original_console_mode_ == winapi::DWord( -1 ) )
                         {
                             original_console_mode_ = old_mode;

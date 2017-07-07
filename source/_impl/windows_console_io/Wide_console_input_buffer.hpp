@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: utf-8 with BOM ∩
-// #include <stdlib/fix/impl/windows_console_io/Wide_console_input_buffer.hpp>
+// #include <stdlib/_impl/windows_console_io/Wide_console_input_buffer.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 #include <assert.h>     // assert
@@ -9,8 +9,8 @@
 #include <streambuf>    // std::basic_streambuf
 
 #include <stdlib/extension/type_builders.hpp>               // ptr_, array_of_
-#include <stdlib/fix/impl/windows_console_io/constants.hpp> // general_buffer_size
-#include <stdlib/fix/impl/windows_console_io/apiwrap.hpp>   // apiwrap::*
+#include <stdlib/_impl/windows_console_io/constants.hpp> // general_buffer_size
+#include <stdlib/_impl/windows_console_io/apiwrap.hpp>   // apiwrap::*
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::basic_streambuf;

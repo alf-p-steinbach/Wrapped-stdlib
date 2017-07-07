@@ -1,12 +1,14 @@
 ﻿// Source encoding: utf-8 with BOM ∩
 #include <stdlib/all/basics.hpp>                // Used here: <iostream> and <iomanip>
+#include <stdlib/extension/process_command_line.hpp>
 using namespace std;
 
-auto main( int n_args, char* args[] )
+auto main()
     -> int
 {
-    cout << n_args << " command line arguments:\n";
-    for( int i = 0; i < n_args; ++i )
+    const stdlib::process::Command_line_args args;
+    cout << args.size() << " command line arguments:\n";
+    for( int i = 0; i < args.size(); ++i )
     {
         cout << setw( 2 ) << i << ": “" << args[i] << "”.\n";
     }

@@ -9,18 +9,19 @@
 #include <array>            // std::array
 #include <bitset>           // std::bitset
 #include <iterator>         // std::distance
-#include <type_traits>      // std::extent
+#include <type_traits>      // std::remove_reference_t
 #include <utility>          // std::(begin, end)
 #include <stdlib/extension/Size_types_only.hpp>     // size_t, ptrdiff_t, Size, Index
 #include <stdlib/extension/type_builders.hpp>       // stdlib::(array_of_, raw_array_of_)
 
-#define STDLIB_ARRAY_SIZE( a ) ::stdlib::Array_size_<decltype(a)>::value
+#define STDLIB_ARRAY_SIZE( a ) ::stdlib::Array_size_<std::remove_reference_t<decltype(a)>>::value
 
 namespace stdlib{
     using std::begin;
     using std::bitset;
     using std::distance;
     using std::end;
+    using std::remove_reference_t;
 
     template< class > struct Array_size_;
 
@@ -48,7 +49,7 @@ namespace stdlib{
     template< class Type >
     constexpr inline auto array_size( Type const& a )
         -> Size
-    { return Array_size_<decltype(a)>::value; }
+    { return Array_size_<remove_reference_t<decltype(a)>>::value; }
 
     template< class Collection >
     auto n_items_of( Collection const& c )

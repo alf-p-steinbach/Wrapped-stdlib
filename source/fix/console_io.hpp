@@ -5,7 +5,7 @@
 
 #ifndef STDLIB_NO_FIX_OF_CONSOLE_IO
 #   ifdef _WIN32
-#       include <stdlib/fix/impl/windows_console_io.hpp>
+#       include <stdlib/_impl/windows_console_io.hpp>
 #   endif
 #endif
 
