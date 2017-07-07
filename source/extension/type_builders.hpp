@@ -4,7 +4,7 @@
 
 #include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
 
-#include <stdlib/extension/Size.hpp>        // stdlib::Size
+#include <stdlib/extension/Size_types_only.hpp>         // stdlib::Size
 
 #include <array>        // std::array
 #include <type_traits>  // std::(make_*, add_*, remove_*)

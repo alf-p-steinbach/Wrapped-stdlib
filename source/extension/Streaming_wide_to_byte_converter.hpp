@@ -101,7 +101,7 @@ namespace stdlib{
     // It always leaves the from_next and to_next pointers pointing one beyond the
     // last element successfully converted.” But MSVC 2017 moves it one more unit,
     // which is practical but non-conforming behavior. So, don't do it for MSVC:
-    #if !defined( _MSC_VER )    // TODO: Replace with check of functionality!
+    #if !defined( _MSC_VER )    // TODO: Replace with check of behavior.
                         ++p_next_in;
     #endif
                         break;      // p_next_in points past the offending unit.

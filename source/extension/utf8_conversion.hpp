@@ -3,13 +3,17 @@
 
 #include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
 
-#include <stdlib/string.hpp>                    // std::(string, wstring)
+#include <algorithm>        // std::(min)
+#include <string>           // std::(string, wstring)
 
+#include <stdlib/extension/impl/converter_buffer_size.hpp>
 #include <stdlib/extension/Streaming_byte_to_wide_converter.hpp>
 #include <stdlib/extension/Streaming_wide_to_byte_converter.hpp>
-#include <stdlib/extension/Size.hpp>
+#include <stdlib/extension/Size.hpp>                    // Size, Index
+#include <stdlib/fix/msvc_named_boolean_operators.hpp>  // or
 
-namespace cppx {
+namespace stdlib {
+    using std::min;
     using std::string;
     using std::wstring;
     using stdlib::Streaming_byte_to_wide_converter;
@@ -19,14 +23,14 @@ namespace cppx {
     inline auto utf8_from( const wstring& s )
         -> string
     {
-        string                  result;
-        Streaming_wide_to_byte_converter  converter;
+        string                              result;
+        Streaming_wide_to_byte_converter    converter;
 
         const Size n = s.length();
-        for( Size read_pos = 0; read_pos < n or converter.n_buffered() > 0; )
+        for( Index read_pos = 0; read_pos < n or converter.n_buffered() > 0; )
         {
-            char out_buffer[1024];  // Or anything, modulo stack size.
-            const Size max_n_bytes = sizeof( out_buffer );
+            char out_buffer[impl::converter_buffer_size];
+            const Size max_n_bytes = array_size( out_buffer );
 
             const Size n_available_wchars = n - read_pos;
             const Size max_n_wchars = min(
@@ -45,14 +49,14 @@ namespace cppx {
     inline auto wide_from_utf8( string const& s )
         -> wstring
     {
-        wstring                 result;
-        Streaming_byte_to_wide_converter  converter;
+        wstring                             result;
+        Streaming_byte_to_wide_converter    converter;
 
         const Size n = s.length();
-        for( Size read_pos = 0; read_pos < n or converter.n_buffered() > 0; )
+        for( Index read_pos = 0; read_pos < n or converter.n_buffered() > 0; )
         {
-            wchar_t out_buffer[1024];   // Or anything, modulo stack size.
-            const Size max_n_wchars = sizeof( out_buffer )/sizeof( wchar_t );
+            wchar_t out_buffer[impl::converter_buffer_size];
+            const Size max_n_wchars = array_size( out_buffer );
 
             const Size n_available_bytes = n - read_pos;
             const Size max_n_bytes = min(

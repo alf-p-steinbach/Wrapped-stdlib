@@ -8,7 +8,7 @@
 //
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
-#ifndef STDLIB_NO_MSVC_UTF8_LITERALS_FIX
+#ifndef STDLIB_NO_FIX_OF_MSVC_UTF8_LITERALS
 #   if defined( _MSC_VER )
 #       if _MSC_VER >= 1700     // Visual C++ 2015 or later
 #           pragma execution_character_set( "utf-8" )   // UTF-8 narrow literals.

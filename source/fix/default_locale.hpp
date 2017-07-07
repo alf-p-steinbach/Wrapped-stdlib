@@ -5,8 +5,8 @@
 // • to make wide streams work in Unix-land, and
 // • to make narrow character classification functions work in Windows.
 //
-// STDLIB_NO_DEFAULT_C_LOCALE_NO suppresses the C locale auto-config.
-// STDLIB_NO_DEFAULT_CPP_LOCALE_FIX suppresses the C++ locale auto-config.
+// STDLIB_NO_FIX_OF_DEFAULT_C_LOCALE suppresses the C locale auto-config.
+// STDLIB_NO_FIX_OF_DEFAULT_CPP_LOCALE suppresses the C++ locale auto-config.
 //
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
