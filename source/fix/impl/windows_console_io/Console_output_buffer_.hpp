@@ -6,7 +6,7 @@
 #include <new>          // placement new
 #include <streambuf>    // std::basic_streambuf
 
-#include <stdlib/extension/Byte_to_wide_converter.hpp>              // Byte_to_wide_converter
+#include <stdlib/extension/Streaming_byte_to_wide_converter.hpp>              // Byte_to_wide_converter
 #include <stdlib/fix/impl/windows_console_io/winapi.hpp>    // put_text_to_console
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
@@ -24,11 +24,11 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
     {
         // Shenanigans to avoid (too early) destruction of the singleton converter:
         using Byte = unsigned char;
-        alignas( Byte_to_wide_converter )
-            static raw_array_of_<sizeof( Byte_to_wide_converter), Byte> converter_storage;
-        static auto* const converter = ::new( &converter_storage ) Byte_to_wide_converter{};
+        alignas( Streaming_byte_to_wide_converter )
+            static raw_array_of_<sizeof( Streaming_byte_to_wide_converter), Byte> converter_storage;
+        static auto* const converter = ::new( &converter_storage ) Streaming_byte_to_wide_converter{};
 
-        constexpr Size result_size = Byte_to_wide_converter::in_buf_size;
+        constexpr Size result_size = Streaming_byte_to_wide_converter::in_buf_size;
         ptr_<const char>    p_source    = data;
         wchar_t             result[result_size];
         Size                n_consumed  = 0;

@@ -15,7 +15,7 @@
 #include <iterator>     // std::(begin, end)
 #include <streambuf>    // std::basic_streambuf
 
-#include <stdlib/extension/Wide_to_byte_converter.hpp>          // Wide_to_byte_converter
+#include <stdlib/extension/Streaming_wide_to_byte_converter.hpp>          // Wide_to_byte_converter
 #include <stdlib/fix/impl/windows_console_io/constants.hpp>     // general_buffer_size
 #include <stdlib/fix/impl/windows_console_io/winapi.hpp>        // winapi::*
 #include <stdlib/fix/msvc_named_boolean_operators.hpp>          // and, or
@@ -35,7 +35,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         array_of_<in_buffer_size, wchar_t>  in_buffer_;
         int                                 read_pos_   = 0;
         int                                 length_     = 0;
-        Wide_to_byte_converter              converter_;
+        Streaming_wide_to_byte_converter              converter_;
 
         auto n_available_chars() const { return length_ - read_pos_; }
 

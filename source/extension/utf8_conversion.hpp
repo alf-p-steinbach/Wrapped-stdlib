@@ -5,22 +5,22 @@
 
 #include <stdlib/string.hpp>                    // std::(string, wstring)
 
-#include <stdlib/extension/Byte_to_wide_converter.hpp>
-#include <stdlib/extension/Wide_to_byte_converter.hpp>
+#include <stdlib/extension/Streaming_byte_to_wide_converter.hpp>
+#include <stdlib/extension/Streaming_wide_to_byte_converter.hpp>
 #include <stdlib/extension/Size.hpp>
 
 namespace cppx {
     using std::string;
     using std::wstring;
-    using stdlib::Byte_to_wide_converter;
-    using stdlib::Wide_to_byte_converter;
+    using stdlib::Streaming_byte_to_wide_converter;
+    using stdlib::Streaming_wide_to_byte_converter;
     using stdlib::Size;
 
     inline auto utf8_from( const wstring& s )
         -> string
     {
         string                  result;
-        Wide_to_byte_converter  converter;
+        Streaming_wide_to_byte_converter  converter;
 
         const Size n = s.length();
         for( Size read_pos = 0; read_pos < n or converter.n_buffered() > 0; )
@@ -46,7 +46,7 @@ namespace cppx {
         -> wstring
     {
         wstring                 result;
-        Byte_to_wide_converter  converter;
+        Streaming_byte_to_wide_converter  converter;
 
         const Size n = s.length();
         for( Size read_pos = 0; read_pos < n or converter.n_buffered() > 0; )

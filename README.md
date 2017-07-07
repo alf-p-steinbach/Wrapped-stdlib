@@ -40,7 +40,7 @@ It’s the C++ standard library with UTF-8 console i/o in Windows, other crucial
   for the C++ standard library, e.g. just include  `<stdlib/all/io.hpp>` to get all the C++ iostreams headers plus the C standard library’s i/o headers, more precisely all headers in this category mentioned in the [header overview at cppreference.com](http://en.cppreference.com/w/cpp/header); and
 
 * ***extensions***  
-  such as `<stdlib/extension/Byte_to_wide_converter.hpp>`, which provides the class that’s used for narrow → wide encoding conversion in the Windows console i/o fix. Most of the extensions are part of the library implementation anyway, so they’re provided in a reusable form in the public interface. Those that are not directly used in the current library code, are provided for completeness.
+  such as `<stdlib/extension/Streaming_byte_to_wide_converter.hpp>`, which provides the class that’s used for narrow → wide encoding conversion in the Windows console i/o fix. Most of the extensions are part of the library implementation anyway, so they’re provided in a reusable form in the public interface. Those that are not directly used in the current library code, are provided for completeness.
 
 The UTF-8 console i/o functionality in Windows is a portable iostreams buffer implementation and is therefore for C++ iostreams only, such as `cout`, not for C level `FILE*` i/o like `printf`.
 
