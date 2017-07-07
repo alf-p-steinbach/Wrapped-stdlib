@@ -6,6 +6,7 @@
 
 #include <array>            // std::array
 #include <bitset>           // std::bitset
+#include <iterator>         // std::distance
 #include <type_traits>      // std::extent
 #include <utility>          // std::(begin, end)
 #include <stdlib/extension/Size_types_only.hpp>     // size_t, ptrdiff_t, Size, Index
@@ -16,6 +17,7 @@
 namespace stdlib{
     using std::begin;
     using std::bitset;
+    using std::distance;
     using std::end;
 
     template< class > struct Array_size_;
@@ -48,7 +50,7 @@ namespace stdlib{
     template< class Collection >
     auto n_items_of( Collection const& c )
         -> Size
-    { return end( c ) - begin( c ); }
+    { return distance( begin( c ), end( c ) ); }
 
     template< size_t n >
     auto n_items_of( bitset<n> const& bits )
