@@ -2,12 +2,6 @@
 // #include <stdlib/fix/impl/windows_console_io/api.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
-#include <stdlib/algorithm.hpp>   // std::remove, std::equal
-#include <stdlib/c/stddef.hpp>    // ptrdiff_t
-#include <stdlib/streambuf.hpp>   // std::basic_streambuf
-
-#include <stdlib/extension/ascii.hpp>           // stdlib::ascii::end_of_text
-#include <stdlib/extension/Size.hpp>            // stdlib::(Size, Index)
 #include <stdlib/extension/type_builders.hpp>   // ptr_
 
 #include <stdlib/fix/msvc_named_boolean_operators.hpp>      // and

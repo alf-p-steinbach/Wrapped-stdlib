@@ -2,6 +2,11 @@
 // #include <stdlib/fix/impl/windows_console_io/apiwrap.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
+#include <stdlib/algorithm.hpp>   // std::remove, std::equal
+#include <stdlib/c/stddef.hpp>    // ptrdiff_t
+
+#include <stdlib/extension/ascii.hpp>           // stdlib::ascii::end_of_text
+#include <stdlib/extension/Size.hpp>            // stdlib::(Size, Index)
 #include <stdlib/fix/impl/windows_console_io/api.hpp>
 
 namespace stdlib{ namespace impl{ namespace apiwrap{
