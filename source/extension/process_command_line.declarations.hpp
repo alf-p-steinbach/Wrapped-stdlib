@@ -45,7 +45,8 @@ namespace stdlib{ namespace process{
         auto argc() const   -> int              { return size(); }
         auto argv()         -> ptr_<ptr_<char>> { return &pointers_[0]; }
 
-        Command_argv_array()
+        Command_argv_array( Command_line_args args = {} )
+            : Command_line_args{ move( args ) }
         {
             for( ref_<string> s : Command_line_args::items_ )
             {
@@ -53,10 +54,6 @@ namespace stdlib{ namespace process{
             }
             pointers_.push_back( nullptr );
         }
-
-        Command_argv_array( Command_line_args args )
-            : Command_line_args( move( args ) )
-        {}
     };
 
 }} // namespace stdlib::process
