@@ -8,9 +8,9 @@
 #include <iterator>     // std::(begin, end)
 #include <streambuf>    // std::basic_streambuf
 
-#include <stdlib/extension/type_builders.hpp>       // ptr_, array_of_
+#include <stdlib/extension/type_builders.hpp>               // ptr_, array_of_
 #include <stdlib/fix/impl/windows_console_io/constants.hpp> // general_buffer_size
-#include <stdlib/fix/impl/windows_console_io/winapi.hpp>    // winapi::*
+#include <stdlib/fix/impl/windows_console_io/apiwrap.hpp>   // apiwrap::*
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::basic_streambuf;
@@ -40,7 +40,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         auto pbackfail( const int_type ch )
             -> int_type
             override
-        { (void) ch; return traits_type::eof(); }          // TODO:
+        { (void) ch; return traits_type::eof(); }               // TODO:
 
         auto underflow()            // Called by uflow()
             -> int_type
@@ -49,9 +49,9 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
             assert( read_position() == readbuf_beyond() );
 
             const auto p_start  = readbuf_start();
-            const Size n        = get_text_from_console( p_start, buffer_size );
+            const Size n        = apiwrap::get_text_from_console( p_start, buffer_size );
 
-            setg( p_start, p_start, p_start + n );
+            setg( p_start, p_start, p_start + n );              // first, next, last
             return (n == 0? Traits::eof() : Traits::to_int_type( *read_position() ));
         }
 
@@ -59,7 +59,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         Wide_console_input_buffer()
         {
             const ptr_<char_type> buffer_start = buffer_.data();
-            setg( buffer_start, buffer_start, buffer_start );
+            setg( buffer_start, buffer_start, buffer_start );   // first, next, last
         }
     };
 }}}  // namespace stdlib::impl::windows_console_io

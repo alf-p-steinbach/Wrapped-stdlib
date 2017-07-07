@@ -15,10 +15,10 @@
 #include <iterator>     // std::(begin, end)
 #include <streambuf>    // std::basic_streambuf
 
-#include <stdlib/extension/Streaming_wide_to_byte_converter.hpp>          // Wide_to_byte_converter
-#include <stdlib/fix/impl/windows_console_io/constants.hpp>     // general_buffer_size
-#include <stdlib/fix/impl/windows_console_io/winapi.hpp>        // winapi::*
-#include <stdlib/fix/msvc_named_boolean_operators.hpp>          // and, or
+#include <stdlib/extension/Streaming_wide_to_byte_converter.hpp>    // Streaming_wide_to_byte_converter
+#include <stdlib/fix/impl/windows_console_io/constants.hpp>         // general_buffer_size
+#include <stdlib/fix/impl/windows_console_io/apiwrap.hpp>           // apiwrap::*
+#include <stdlib/fix/msvc_named_boolean_operators.hpp>              // and, or
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::array;
@@ -35,7 +35,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         array_of_<in_buffer_size, wchar_t>  in_buffer_;
         int                                 read_pos_   = 0;
         int                                 length_     = 0;
-        Streaming_wide_to_byte_converter              converter_;
+        Streaming_wide_to_byte_converter    converter_;
 
         auto n_available_chars() const { return length_ - read_pos_; }
 
@@ -44,7 +44,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
         {
             if( read_pos_ == length_ and converter_.n_buffered() == 0 )
             {
-                length_ = get_text_from_console( in_buffer_.data(), in_buffer_.size() );
+                length_ = apiwrap::get_text_from_console( in_buffer_.data(), in_buffer_.size() );
                 read_pos_ = 0;
                 if( length_ == 0 )
                 {

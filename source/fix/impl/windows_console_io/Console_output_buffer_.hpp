@@ -6,8 +6,8 @@
 #include <new>          // placement new
 #include <streambuf>    // std::basic_streambuf
 
-#include <stdlib/extension/Streaming_byte_to_wide_converter.hpp>              // Byte_to_wide_converter
-#include <stdlib/fix/impl/windows_console_io/winapi.hpp>    // put_text_to_console
+#include <stdlib/extension/Streaming_byte_to_wide_converter.hpp>    // Streaming_byte_to_wide_converter
+#include <stdlib/fix/impl/windows_console_io/apiwrap.hpp>           // apiwrap::put_text_to_console
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::basic_streambuf;
@@ -17,7 +17,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
 
     inline auto write( const ptr_<const wchar_t> data, const Size n )
         -> Size
-    { return put_text_to_console( data, n ); }
+    { return apiwrap::put_text_to_console( data, n ); }
 
     inline auto write( const ptr_<const char> data, const Size n )
         -> Size
