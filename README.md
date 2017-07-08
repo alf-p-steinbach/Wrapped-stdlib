@@ -5,7 +5,7 @@
 - [About *stdlib*.](#about-stdlib)
 - [How to install and use *stdlib* – a short intro.](#how-to-install-and-use-stdlib--a-short-intro)
 - [How to use *stdlib* fixes with existing code.](#how-to-use-stdlib-fixes-with-existing-code)
-- [Background &amp; goal.](#background-amp-goal)
+- [Background, goal &amp; degree of goal achievement.](#background-goal-amp-degree-of-goal-achievement)
 - [About the library name *stdlib*.](#about-the-library-name-stdlib)
 - [How can you benefit from *stdlib*?](#how-can-you-benefit-from-stdlib)
 - [License.](#license)
@@ -61,7 +61,8 @@ How to install and use *stdlib* – a short intro.
 #include <stdlib/iostream.hpp>
 using namespace std;
 
-auto main() -> int
+auto main()
+    -> int
 {
     cout << "Hello, world!" << endl;
 }
@@ -78,7 +79,8 @@ Then
 #include <stdlib/iostream.hpp>
 using namespace std;
 
-auto main() -> int
+auto main()
+    -> int
 {
     cout << u8"Every 日本国 кошка likes Norwegian blåbærsyltetøy.\n";
     cout << "I said, every 日本国 кошка likes Norwegian blåbærsyltetøy.\n";
@@ -119,7 +121,8 @@ Say you have some existing code using the C++ standard library, like this (hypot
 #include <string>
 using namespace std;
 
-auto main() -> int
+auto main()
+    -> int
 {
     cout << "Hi, what's your name? ";
     string name;
@@ -175,7 +178,7 @@ Pleased to meet you, Pål Аркадий Jørgen Sæther!
 Yay! Old programs good as new!
 
 
-Background &amp; goal.
+Background, goal &amp; degree of goal achievement.
 ----
 Two C++ infra-structure developments have made *stdlib*’s “always UTF-8” a practical, instead of just an idealistic, choice:
 
@@ -189,14 +192,15 @@ However, Visual C++ 2017 and the current MinGW g++ compiler’s UTF-8 execution 
 
 The main goal is to enable learners and professionals who write small tool or exploratory programs, to be able to do that simply, and have those programs work with international text.
 
-Here’s an example:
+Here’s the earlier example expressed *stdlib* style:
 
 ```c++
 // Source encoding: utf-8 with BOM ∩
 #include <stdlib/all/basics.hpp>
 using namespace std;
 
-auto main() -> int
+auto main()
+    -> int
 {
     cout << "Hi, what’s your name? ";
     string name;
@@ -205,7 +209,56 @@ auto main() -> int
 }
 ```
 
-This same code works in both *nix-land and Windows, when the name input by the user contains non-English characters.
+This same code works in both \*nix-land and Windows, when the name input by the user contains non-English characters such as in the name “Pål Аркадий Jørgen Sæther”.
+
+For this program the most convenient is to use *stdlib* headers, but as shown you can also use standard C++ only textbook code as-is, with working handling of international text in Windows, by including `<stdlib/fix/console_io.hpp>` e.g. via a forced include.
+
+However, *stdlib* doesn’t fix the not-working-in-Windows `main` arguments (because I found no reliable way to do that). But *stdlib* provides an alternative, namely two UTF-8 based classes called `Command_line_args` and `Command_argv_array`. The former is for usual command line argument access, and the latter is a convenience wrapper for e.g. use of [`getopt`](https://www.gnu.org/software/libc/manual/html_node/Getopt.html).
+
+```c++
+// Source encoding: utf-8 with BOM ∩
+#include <stdlib/all/basics.hpp>
+using namespace std;
+
+auto main()
+    -> int
+{
+    const stdlib::process::Command_line_args args;
+
+    cout << args.size() << " command line arguments:\n";
+    for( int i = 0; i < args.size(); ++i )
+    {
+        cout << setw( 2 ) << i << ": “" << args[i] << "”.\n";
+    }
+}
+```
+
+For this program explicit use of *stdlib* or some other supporting library, in the source code, isn’t just a convenience but necessary.
+
+As of July 2017 `Command_line_args` default construction is supported for Windows and Linux, the two platforms that I had available for testing. On most other platforms the `main` arguments can be used as-is in platform-specific code. Portable code may adapt portably to the platform by using the `Command_line_args::from_os_or_else_from` factory function, where portability is gained at the cost of required access to the `main` arguments:
+
+```c++
+// Source encoding: utf-8 with BOM ∩
+#include <stdlib/all/basics.hpp>
+using namespace stdlib::type_builders;      // ptr_, ref_
+using stdlib::process::Command_line_args;   // Command_line_args
+
+namespace my{
+    void cppmain( ref_<const Command_line_args> args )
+    {
+        using namespace std;
+        cout << args.size() << " command line arguments:\n";
+        for( int i = 0; i < args.size(); ++i )
+        {
+            cout << setw( 2 ) << i << ": “" << args[i] << "”.\n";
+        }
+    }
+}  // namespace my
+
+auto main( const int n, const ptr_<ptr_<char>> arg_pointers )
+    -> int
+{ my::cppmain( Command_line_args::from_os_or_else_from( n, arg_pointers ) ); }
+```
 
 About the library name *stdlib*.
 ---------------
