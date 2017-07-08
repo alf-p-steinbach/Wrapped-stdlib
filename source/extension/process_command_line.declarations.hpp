@@ -4,6 +4,8 @@
 
 #include <stdlib/extension/Size_types_only.hpp>         // stdlib::(Size, Index)
 #include <stdlib/extension/type_builders.hpp>           // stdlib::ref_
+#include <stdlib/extension/version.hpp>
+
 #include <stdlib/fix/msvc_named_boolean_operators.hpp>  // not
 
 #include <utility>      // std::move
@@ -26,6 +28,10 @@ namespace stdlib{ namespace process{
 
     class Command_line_args
     {
+        Command_line_args( const int n, ptr_<const ptr_<const char>> args )
+            : items_( args, args + n )
+        {}
+
     protected:
         vector<string>      items_;
 
@@ -38,6 +44,18 @@ namespace stdlib{ namespace process{
         auto operator[]( Index const i ) const
             -> ref_<const string>
         { return items_.at( i ); }
+
+        static auto from_os_or_else_from(
+            const int               argc,       // Pass 1st argument of `main` here.
+            const ptr_<ptr_<char>>  argv        // Pass 2nd argument of `main` here.
+            ) -> Command_line_args
+        {
+            // May be modified later to include other ungood-main-args platforms.
+            return (
+                platform::is_windows? Command_line_args{}
+                : Command_line_args{argc, argv}
+                );
+        }
 
         inline Command_line_args();                     // Platform-dependent.
     };
