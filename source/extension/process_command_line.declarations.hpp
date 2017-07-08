@@ -15,7 +15,14 @@ namespace stdlib{ namespace process{
     using std::string;
     using std::vector;
 
-    inline auto command_line() -> string;
+    constexpr
+    inline auto has_original_command_line()             // Platform-dependent.
+        -> bool;
+
+    // UTF-8. Original command line as passed to the process, e.g. in Windows.
+    // Empty on systems with no such, i.e. where `not has_original_command_line()`.
+    inline auto command_line()                          // Platform-dependent.
+        -> string;
 
     class Command_line_args
     {
@@ -32,13 +39,12 @@ namespace stdlib{ namespace process{
             -> ref_<const string>
         { return items_.at( i ); }
 
-        inline Command_line_args();     // Implemented for each supported platform.
+        inline Command_line_args();                     // Platform-dependent.
     };
 
     class Command_argv_array
         : private Command_line_args
     {
-    private:
         vector<ptr_<char>>  pointers_;
 
     public:

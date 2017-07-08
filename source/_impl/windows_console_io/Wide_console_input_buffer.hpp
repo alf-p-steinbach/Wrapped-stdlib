@@ -20,7 +20,6 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
     class Wide_console_input_buffer
         : public basic_streambuf<wchar_t>
     {
-    private:
         static constexpr Size buffer_size = general_buffer_size;
         using Base = basic_streambuf<wchar_t>;
         using Traits = traits_type;

@@ -11,6 +11,11 @@
 #include <stdlib/_impl/windows_process_command_line/apiwrap.hpp>    // impl::apiwrap::*
 
 namespace stdlib{
+    constexpr
+    inline auto has_original_command_line()
+        -> bool
+    { return true; }
+
     inline auto process::command_line()
         -> string
     { return utf8_from( impl::apiwrap::command_line_ptr() ); };

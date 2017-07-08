@@ -63,7 +63,6 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
     class Console_output_buffer_
         : public basic_streambuf<Char>
     {
-    private:
         static constexpr Size buffer_size = 8;
         using Base = basic_streambuf<Char>;
         using Traits = typename Base::traits_type;

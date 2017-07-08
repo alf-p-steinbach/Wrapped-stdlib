@@ -12,14 +12,11 @@
 
 #include <stdlib/extension/hopefully_and_fail.hpp>  // stdlib::(hopefully, fail)
 #include <stdlib/extension/process_command_line.declarations.hpp>   // 
-#include <stdlib/extension/Size.hpp>                // stdlib::array_size
-#include <stdlib/extension/type_builders.hpp>       // stdlib::<raw_array_of_>
+#include <stdlib/extension/type_builders.hpp>       // stdlib::raw_array_
 
 #include <algorithm>            // std::replace
 #include <fstream>
 #include <string>
-#include <sys/types.h>
-#include <unistd.h>
 
 namespace stdlib{
     using std::ifstream;
@@ -32,25 +29,22 @@ namespace stdlib{
         inline auto get_command_line_data()
             -> string
         {
-            const string path = "/proc/" + to_string( getpid() ) + "/cmdline";
+            static const raw_array_<char> funcname = "stdlib::impl::get_command_line_data";
+
+            const string path = "/proc/self/cmdline";   // "self" provides getpid()
             ifstream f{ path };
             hopefully( not f.fail() )
-                or fail( "stdlib::impl::get_command_line_data - failed to open “" + path + "”" );
+                or fail( string() + funcname + " - failed to open “" + path + "”" );
             string result;
             getline( f, result )
-                or fail( "stdlib::impl::get_command_line_data - failed to read “" + path + "”" );
+                or fail( string() + funcname + " - failed to read “" + path + "”" );
             return result;
         }
     }  // namespace impl
 
     inline auto process::command_line()
         -> string
-    {
-        // TODO: needs quoting of parts as necessary.
-        string result = impl::get_command_line_data();
-        replace( result.begin(), result.end(), '\0', ' ' );
-        return result;
-    };
+    { return ""; }      // Linux doesn't have a concept of original command line.
 
     inline process::Command_line_args::Command_line_args()
     {

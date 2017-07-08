@@ -16,8 +16,8 @@
 #include <streambuf>    // std::basic_streambuf
 
 #include <stdlib/extension/Streaming_wide_to_byte_converter.hpp>    // Streaming_wide_to_byte_converter
-#include <stdlib/_impl/windows_console_io/constants.hpp>         // general_buffer_size
-#include <stdlib/_impl/windows_console_io/apiwrap.hpp>           // apiwrap::*
+#include <stdlib/_impl/windows_console_io/constants.hpp>            // general_buffer_size
+#include <stdlib/_impl/windows_console_io/apiwrap.hpp>              // apiwrap::*
 #include <stdlib/fix/msvc_named_boolean_operators.hpp>              // and, or
 
 namespace stdlib{ namespace impl{ namespace windows_console_io{
@@ -29,7 +29,6 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
 
     class Utf8_line_input
     {
-    private:
         static constexpr Size in_buffer_size = general_buffer_size;
 
         array_of_<in_buffer_size, wchar_t>  in_buffer_;
@@ -91,7 +90,6 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
     class Byte_console_input_buffer
         : public basic_streambuf<char>
     {
-    private:
         static constexpr Size buffer_size = general_buffer_size;
         using Base = basic_streambuf<char>;
         using Traits = traits_type;
