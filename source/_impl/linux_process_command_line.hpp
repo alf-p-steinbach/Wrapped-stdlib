@@ -42,9 +42,14 @@ namespace stdlib{
         }
     }  // namespace impl
 
+    constexpr
+    inline auto has_original_command_line()
+        -> bool
+    { return false; }
+
     inline auto process::command_line()
         -> string
-    { return ""; }      // Linux doesn't have a concept of original command line.
+    { return ""; }
 
     inline process::Command_line_args::Command_line_args()
     {
