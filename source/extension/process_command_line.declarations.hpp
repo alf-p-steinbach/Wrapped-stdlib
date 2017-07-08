@@ -26,6 +26,7 @@ namespace stdlib{ namespace process{
     inline auto command_line()                          // Platform-dependent.
         -> string;
 
+    // UTF-8 encoded command line arguments.
     class Command_line_args
     {
         Command_line_args( const int n, ptr_<const ptr_<const char>> args )
@@ -60,6 +61,7 @@ namespace stdlib{ namespace process{
         inline Command_line_args();                     // Platform-dependent.
     };
 
+    // `main`-arguments style argument pointers for e.g. use of `getopt`.
     class Command_argv_array
         : private Command_line_args
     {
