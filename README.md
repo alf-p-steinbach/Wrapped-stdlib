@@ -5,7 +5,7 @@
 - [About *stdlib*.](#about-stdlib)
 - [How to install and use *stdlib* – a short intro.](#how-to-install-and-use-stdlib--a-short-intro)
 - [How to use *stdlib* fixes with existing code.](#how-to-use-stdlib-fixes-with-existing-code)
-- [Background, goal &amp; degree of goal achievement.](#background-goal-amp-degree-of-goal-achievement)
+- [Background, goal &amp; degree of goal achievement.](#background-goal--degree-of-goal-achievement)
 - [About the library name *stdlib*.](#about-the-library-name-stdlib)
 - [How can you benefit from *stdlib*?](#how-can-you-benefit-from-stdlib)
 - [License.](#license)
