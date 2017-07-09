@@ -4,7 +4,7 @@
 
 #include <stdlib/extension/Size_types_only.hpp>         // stdlib::(Size, Index)
 #include <stdlib/extension/type_builders.hpp>           // stdlib::ref_
-#include <stdlib/extension/version.hpp>
+#include <stdlib/extension/version.hpp>                 // stdlib::platform::is_windows
 
 #include <stdlib/fix/msvc_named_boolean_operators.hpp>  // not
 
@@ -18,12 +18,12 @@ namespace stdlib{ namespace process{
     using std::vector;
 
     constexpr
-    inline auto has_original_command_line()             // Platform-dependent.
+    inline auto has_original_command_line()                 // Platform-dependent.
         -> bool;
 
     // UTF-8. Original command line as passed to the process, e.g. in Windows.
     // Empty on systems with no such, i.e. where `not has_original_command_line()`.
-    inline auto command_line()                          // Platform-dependent.
+    inline auto command_line()                              // Platform-dependent.
         -> string;
 
     // UTF-8 encoded command line arguments.
@@ -58,7 +58,7 @@ namespace stdlib{ namespace process{
                 );
         }
 
-        inline Command_line_args();                     // Platform-dependent.
+        inline Command_line_args();                         // Platform-dependent.
     };
 
     // `main`-arguments style argument pointers for e.g. use of `getopt`.
