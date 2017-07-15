@@ -4,8 +4,10 @@
 // std::path class and supporting functions.
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
-#include <stdlib/extension/version.hpp>         // STDLIB_COMPILER_SUPPORTS_CPP17
+#include <stdlib/extension/version.hpp>             // STDLIB_COMPILER_SUPPORTS_CPP17
 #include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
+
+#include <stdlib/extension/utf8_conversion.hpp>     // For STDLIB_FIX_GCC_U8PATH
 
 #if STDLIB_USE_EXPERIMENTAL_CPP17
 #   include <experimental/filesystem>
@@ -21,8 +23,22 @@
 
 #ifdef STDLIB_HOIST_UP_FILESYSTEM_NAMESPACE
     namespace std {
-        namespace filesystem = experimental::filesystem;
+        namespace filesystem {
+            using namespace experimental::filesystem;
+        }  // namespace filesystem
     }  // namespace std;
+#endif
+
+#if defined( STDLIB_FIX_GCC_U8PATH ) && defined( __GNUC__ ) && defined( _WIN32 )
+    namespace std{ namespace filesystem {
+        inline auto u8path( string const& source  )
+            -> path
+        { return path{ ::stdlib::wide_from_utf8( source ) }; }
+
+        inline auto u8path( char const* const source  )
+            -> path
+        { return u8path( string( source ) ); }
+    }}  // std::namespace filesystem
 #endif
 
 #include <stdlib/all/non_io_fixes.hpp>
