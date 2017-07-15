@@ -54,7 +54,7 @@ namespace stdlib{ namespace process{
             // May be modified later to include other ungood-main-args platforms.
             return (
                 platform::is_windows? Command_line_args{}
-                : Command_line_args{argc, argv}
+                : Command_line_args{ argc, argv }
                 );
         }
 
@@ -68,8 +68,10 @@ namespace stdlib{ namespace process{
         vector<ptr_<char>>  pointers_;
 
     public:
-        auto argc() const   -> int              { return size(); }
-        auto argv()         -> ptr_<ptr_<char>> { return &pointers_[0]; }
+        explicit operator bool() const { return true; }     // For C++14 `if` as `with`.
+
+        auto argc() -> int              { return size(); }
+        auto argv() -> ptr_<ptr_<char>> { return &pointers_[0]; }
 
         Command_argv_array( Command_line_args args = {} )
             : Command_line_args{ move( args ) }

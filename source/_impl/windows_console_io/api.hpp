@@ -45,7 +45,7 @@ namespace stdlib{ namespace impl{ namespace winapi{
     using Security_attributes = void;       // We don't need security attributes.
 
     extern "C"
-    auto _stdcall CreateFileW(
+    auto __stdcall CreateFileW(
         ptr_<const wchar_t>         lpFileName,
         DWord                       dwDesiredAccess,
         DWord                       dwShareMode,

@@ -6,6 +6,10 @@
 
 #include <stdlib/_impl/winapi_types.hpp>     // winapi::(DWord, ...)
 
+#ifdef _MSC_VER
+#   pragma comment( lib, "shell32.lib" )        // For CommandLineToArgvW
+#endif
+
 namespace stdlib{ namespace impl{ namespace winapi{
 
     extern "C"

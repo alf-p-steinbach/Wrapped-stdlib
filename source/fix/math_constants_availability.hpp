@@ -25,11 +25,13 @@
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 #ifndef STDLIB_NO_MATH_CONSTANTS
-#   undef _USE_MATH_DEFINES             // Suppress sillywarning.
-#   define _USE_MATH_DEFINES            // M_PI etc.
+#   undef   __STRICT_ANSI__             // For g++
+#   undef   _USE_MATH_DEFINES           // Suppress sillywarning.
+#   define  _USE_MATH_DEFINES           // M_PI etc.
 #endif
 
 // At least with MSVC this works for defining M_PI etc. even if <math.h> has
 // been previously included - the definitions are outside the normal guard.
-#include <cmath>
 #include <math.h>
+#include <cmath>
+auto const silly = M_PI;

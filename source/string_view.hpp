@@ -7,19 +7,22 @@
 #include <stdlib/extension/version.hpp>         // STDLIB_COMPILER_SUPPORTS_CPP17
 #include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
 
-#if STDLIB_COMPILER_SUPPORTS_CPP17
-#   include <string_view>
-#elif STDLIB_USE_EXPERIMENTAL_CPP17
+#if STDLIB_USE_EXPERIMENTAL_CPP17
 #   include <experimental/string_view>
-    namespace std {
-        using experimental::string_view;
-    }  // namespace std;
+#elif STDLIB_COMPILER_SUPPORTS_CPP17
+#   include <string_view>
 #else
 #   ifdef _MSC_VER
 #       error "<string_view> is apparently not available (use option `/std:c++latest`?)."
 #   else
-#       error "<string_view> is apparently not available with this compiler & options."
+#       error "<string_view> appears not available (try define STDLIB_USE_EXPERIMENTAL_CPP17?)."
 #   endif
+#endif
+
+#ifdef STDLIB_HOIST_UP_STRINGVIEW_TEMPLATE
+    namespace std {
+        using experimental::string_view;
+    }  // namespace std;
 #endif
 
 #include <stdlib/all/non_io_fixes.hpp>

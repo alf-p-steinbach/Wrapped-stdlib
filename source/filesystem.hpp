@@ -7,10 +7,10 @@
 #include <stdlib/extension/version.hpp>         // STDLIB_COMPILER_SUPPORTS_CPP17
 #include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
 
-#if STDLIB_COMPILER_SUPPORTS_CPP17
-#   include <filesystem>
-#elif STDLIB_USE_EXPERIMENTAL_CPP17
+#if STDLIB_USE_EXPERIMENTAL_CPP17
 #   include <experimental/filesystem>
+#elif STDLIB_COMPILER_SUPPORTS_CPP17
+#   include <filesystem>
 #else
 #   ifdef _MSC_VER
 #       error "<filesystem> appears not available (try option `/std:c++latest`?)."
@@ -24,3 +24,5 @@
         namespace filesystem = experimental::filesystem;
     }  // namespace std;
 #endif
+
+#include <stdlib/all/non_io_fixes.hpp>

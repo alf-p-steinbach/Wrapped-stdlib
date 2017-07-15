@@ -13,4 +13,6 @@
 #if defined( _MSC_VER ) && !defined( STDLIB_NO_FIX_OF_MSVC_WOLFCALLS_ABOUT_STD_FUNCTIONS )
 #   undef _SCL_SECURE_NO_WARNINGS       // Avoid extra sillywarning on the #define.
 #   define _SCL_SECURE_NO_WARNINGS
+#   undef _CRT_SECURE_NO_WARNINGS
+#   define _CRT_SECURE_NO_WARNINGS
 #endif

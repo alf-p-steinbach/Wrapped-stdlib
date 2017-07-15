@@ -7,6 +7,7 @@
 #include <stdlib/all/io.hpp>                            // E.g. <iostream> & <iomanip>
 #include <stdlib/all/numerics.hpp>                      // E.g. <stdlib.h>, <math.h> & <algorithm>
 #include <stdlib/vector.hpp>                            // std::vector
+#include <stdlib/functional.hpp>                        // std::(function, invoke)
 
 #include <stdlib/extension/hopefully_and_fail.hpp>      // stdlib::(hopefully, fail)
 #include <stdlib/extension/Size.hpp>                    // stdlib::(Index, Size)
