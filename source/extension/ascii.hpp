@@ -60,6 +60,7 @@ namespace stdlib{ namespace ascii {
     inline auto contains_all( const It start, const It beyond )
         -> bool
     {
+        for( It it = start; it != beyond; ++it )
         {
             if( not ascii::contains( *it ) ) { return false; }
         }
