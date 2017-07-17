@@ -6,6 +6,8 @@
 
 namespace stdlib{ namespace impl{ namespace winapi{
 
+    int const max_path_length = 260;            // MAX_PATH
+        
     using Bool          = int;
     using Handle        = ptr_<void>;
     using DWord         = unsigned;     static_assert( sizeof( DWord ) == 4, "!" );

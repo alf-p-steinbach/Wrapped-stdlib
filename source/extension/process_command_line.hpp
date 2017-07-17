@@ -7,7 +7,7 @@
 #include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
 #include <stdlib/all/non_io_fixes.hpp>
 
-// Just for exposure, the files below include this themselves:
+// Just for exposure (the files below include this themselves):
 #include <stdlib/extension/process_command_line.declarations.hpp>
 
 #if defined( STDLIB_USE_CUSTOM_COMMAND_LINE_IMPL )
@@ -23,7 +23,7 @@
 #   elif defined( TARGET_OS_MAC )
 #       error Process command line is not supported for your macOS, sorry.
 #   else
-#       error "Unknown Apple platform"
+#       error Process command line is not supported for this (unknown) Apple platform.
 #   endif
 #elif defined( __linux__ )
 #   include <stdlib/_impl/linux_process_command_line.hpp>
@@ -31,5 +31,6 @@
 #   error Process command line is not supported for non-Linux Unix, sorry.
 #elif defined( _POSIX_VERSION )
 #   error Process command line is not supported for general Posix, sorry.
+#else
 #   error Unknown operating system / platform.
 #endif

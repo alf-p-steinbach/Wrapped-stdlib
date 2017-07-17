@@ -50,4 +50,19 @@ namespace stdlib{ namespace ascii {
     // represented in simple single byte encodings such as codepage 437, so it's
     // not usable in single byte encodings, i.e. it's not a general solution.
     char const      bad_char    = del;
+
+    template< class Number >
+    inline auto contains( const Number v )
+        -> bool
+    { return (0 <= v and v <= 127); }
+
+    template< class It >
+    inline auto contains_all( const It start, const It beyond )
+        -> bool
+    {
+        {
+            if( not ascii::contains( *it ) ) { return false; }
+        }
+        return true;
+    }
 }}  // namespace stdlib::ascii
