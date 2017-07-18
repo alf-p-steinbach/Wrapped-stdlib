@@ -88,8 +88,10 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
 
             byte_out_buf.set_buddy( &wide_out_buf );
             wide_out_buf.set_buddy( &byte_out_buf );
+
             byte_err_buf.set_buddy( &wide_err_buf );
             wide_err_buf.set_buddy( &byte_err_buf );
+
             byte_log_buf.set_buddy( &wide_log_buf );    // TODO: consider err streams too.
             wide_log_buf.set_buddy( &byte_log_buf );
 

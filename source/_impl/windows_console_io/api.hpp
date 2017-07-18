@@ -4,7 +4,8 @@
 
 #include <stdlib/extension/type_builders.hpp>   // ptr_
 
-#include <stdlib/_impl/winapi_types.hpp>     // winapi::(DWord, ...)
+#include <stdlib/_impl/winapi_types.hpp>        // winapi::(DWord, ...)
+#include <stdlib/_impl/winapi_constants.hpp>    // winapi::(max_path_length, cp_utf8, ...)
 
 namespace stdlib{ namespace impl{ namespace winapi{
     enum: DWord
@@ -34,12 +35,6 @@ namespace stdlib{ namespace impl{ namespace winapi{
         open_existing       = 3,
         open_always         = 4,
         truncate_existing   = 5
-    };
-
-    enum: UInt
-    {
-        cp_acp              = 0,            // ANSI codepage id
-        cp_utf8             = 65001         // UTF-8 codepage id
     };
 
     using Security_attributes = void;       // We don't need security attributes.

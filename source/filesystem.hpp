@@ -7,7 +7,7 @@
 #include <stdlib/extension/version.hpp>             // STDLIB_COMPILER_SUPPORTS_CPP17
 #include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
 
-#include <stdlib/extension/compatible_path.hpp>     // For stdlib::compatible_string function
+#include <stdlib/extension/char_path.hpp>    // For stdlib::char_path(path)
 #include <stdlib/extension/utf8_conversion.hpp>     // For STDLIB_FIX_GCC_U8PATH
 
 #if STDLIB_USE_EXPERIMENTAL_CPP17
@@ -46,12 +46,14 @@ namespace stdlib{
     namespace fs = ::std::filesystem;
 
     // Best effort compatible-with-runtime-library path.
-    // In Windows the result is a short path, if that’s available for the file system,
-    // and unless the long path is all ASCII, in which case it’s just returned as-is.
 
-    inline auto path_string( ref_<const fs::path> path )
+    inline auto char_path( ref_<const fs::path> path )
         -> string
-    { return compatible_path( path.u8string() ); }
+    { return char_path( path.native() ); }
+
+    inline auto char_path_or_x( ref_<const fs::path> path )
+        -> string
+    { return char_path_or_x( path.native() ); }
 
 }  // namespace stdlib
 

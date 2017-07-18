@@ -7,7 +7,7 @@
 #include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
 #include <stdlib/all/non_io_fixes.hpp>
 
-// Just for exposure (the files below include this themselves):
+// For exposition only (each included header below includes this itself):
 #include <stdlib/extension/process_command_line.declarations.hpp>
 
 #if defined( STDLIB_USE_CUSTOM_COMMAND_LINE_IMPL )
