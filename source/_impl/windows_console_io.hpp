@@ -107,7 +107,8 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
 
             for( int i = 0; i < n_std_streams; ++i )
             {
-                if( is_console( i ) )
+                const int c_stream_id = (i > 2? 2 : i);
+                if( is_console( c_stream_id ) )
                 {
                     default_byte_buffer_[i] = byte_streams_[i]->rdbuf( byte_buffers[i] );
                     default_wide_buffer_[i] = wide_streams_[i]->rdbuf( wide_buffers[i] );
@@ -118,7 +119,7 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
                         // enable_ansi_escape_codes() doesn't work with a direct i/o
                         // handle, must use a stream handle; possibly it's per stream.
                         const auto h = reinterpret_cast<winapi::Handle>(
-                            _get_osfhandle( i )
+                            _get_osfhandle( c_stream_id )
                             );
                         winapi::DWord const old_mode = apiwrap::enable_ansi_escape_codes( h );
                         if( original_console_mode_ == winapi::DWord( -1 ) )
