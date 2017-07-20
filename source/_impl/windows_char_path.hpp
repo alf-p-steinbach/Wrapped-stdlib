@@ -154,18 +154,18 @@ namespace stdlib{
                 {
                     result += alt.value;
                 }
-                else if( not substitution_allowed )
+                else if( substitution_allowed )
+                {
+                    const auto rough_ansi = impl::ansi_from( p, n, true );
+                    assert( rough_ansi.value.length() > 0 );
+                    result.append( rough_ansi.value.begin(), rough_ansi.value.end() );
+                }
+                else
                 {
                     fail( string()
                         + "stdlib::impl::ansi_path - unable to represent last item in"
                         + " “" + utf8_from( &long_path[0] ) + "”"
                         );
-                }
-                else
-                {
-                    const auto rough_ansi = impl::ansi_from( p, n, true );
-                    assert( rough_ansi.value.length() > 0 );
-                    result.append( rough_ansi.value.begin(), rough_ansi.value.end() );
                 }
             }
             return result;

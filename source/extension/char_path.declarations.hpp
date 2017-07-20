@@ -26,12 +26,10 @@ namespace stdlib{
         -> string;
 
     inline auto char_path( wstring long_path )
-        noexcept
         -> string
     { return char_path_with_substitution( true, move( long_path ) ); }
 
     inline auto char_path( string long_utf8_path )
-        noexcept
         -> string
     { return char_path_with_substitution( true, move( long_utf8_path ) ); }
 
