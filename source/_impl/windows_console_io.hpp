@@ -57,7 +57,12 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
 
         static auto is_console( const int stream_id )
             -> bool
-        { return !!_isatty( stream_id ); }
+        {
+            // return !!_isatty( stream_id );  //! False positive for redirection to nul device. :(
+            auto const output_handle = reinterpret_cast<winapi::Handle>( _get_osfhandle( stream_id ) );
+            winapi::DWord dummy;
+            return !!winapi::GetConsoleMode( output_handle, &dummy );
+        }
 
         ~Envelope()
         {
