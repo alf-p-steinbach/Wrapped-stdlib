@@ -89,6 +89,8 @@ auto main()
 
 The source encoding matters. It generally needs to be UTF-8. And to make that work by default with Visual C++, a BOM (three special bytes at the start of the file) is needed. Happily modern g++ just ignores the BOM.
 
+Also, in Windows you need to set a console window font, such as Lucida Console, that can display international characters. You can set a console window font by right clicking a console window title and delving into that pop-up menu.
+
 In this source code
 
 * The set intersection symbol “∩” at the end of the comment is a convention that ***helps ensure UTF-8 source encoding***. It causes some editors that otherwise would have chosen some ungood encoding, to either (e.g. in the case Visual Studio) prompt you about whether to save as Unicode, or to (e.g. in the case of Notepad++) translate the “∩” to some similar looking character such as “n”. And that can reveal an ungood choice of encoding to you.
@@ -105,7 +107,7 @@ The result in Windows should be like this, where `cl` is the Visual C++ compiler
 
 ![Commands in Windows console window](images/international_hello_world.colorized.png)
 
-(I added coloration of the screenshot to identify the typed commands as such, but you will likely see all Windows console window text in the same color).
+I added green coloration of the screenshot to identify the typed commands as such, but you will likely see all Windows console window text in the same color. Also, whether international characters are properly displayed depends on your console window font. I use Lucida Console.
 
 5. Okay. That’s it! You’re ready to go! Yay! Woohoo!  
    Wow!  
