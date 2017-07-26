@@ -128,7 +128,7 @@ namespace stdlib{
             -> wstring
         {
             if( long_path.length() == 0 ) { return long_path; }
-            long_path += L'\0';
+            long_path.append( L"\0\0", 2 );
 
             wstring result;
             replace( long_path.begin(), long_path.end(), '\\', '\0' );
