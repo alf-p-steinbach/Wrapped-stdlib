@@ -5,6 +5,7 @@
 #include <stdlib/extension/type_builders.hpp>   // ptr_
 
 namespace stdlib{ namespace impl{ namespace winapi{
+    using namespace stdlib::ext;
 
     using Bool          = int;
     using Handle        = ptr_<void>;

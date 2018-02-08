@@ -12,7 +12,7 @@
 #include <vector>       // std::vector
 #include <string>       // std::string
 
-namespace stdlib{ namespace process{
+namespace stdlib{ namespace ext{ namespace process{
     using std::move;
     using std::string;
     using std::vector;
@@ -84,4 +84,4 @@ namespace stdlib{ namespace process{
         }
     };
 
-}} // namespace stdlib::process
+}}} // namespace stdlib::ext::process

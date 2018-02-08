@@ -42,7 +42,7 @@
     }}  // std::namespace filesystem
 #endif
 
-namespace stdlib{
+namespace stdlib{ namespace ext{
     namespace fs = ::std::filesystem;
 
     // Best effort compatible-with-runtime-library path.
@@ -55,6 +55,6 @@ namespace stdlib{
         -> string
     { return char_path_or_x( path.native() ); }
 
-}  // namespace stdlib
+}}  // namespace stdlib::ext
 
 #include <stdlib/all/non_io_fixes.hpp>

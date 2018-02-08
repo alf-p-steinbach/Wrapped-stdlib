@@ -7,7 +7,7 @@
 
 #include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
 
-namespace stdlib{ namespace ascii {
+namespace stdlib{ namespace ext{ namespace ascii {
     char const      null        = '\0';         // '\0' 0x00
     char const      bell        = '\a';         // '\a' 0x07, ^G
     char const      backspace   = '\b';         // '\b' 0x07, ^H
@@ -66,4 +66,4 @@ namespace stdlib{ namespace ascii {
         }
         return true;
     }
-}}  // namespace stdlib::ascii
+}}}  // namespace stdlib::ext::ascii

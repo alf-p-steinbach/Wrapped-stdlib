@@ -12,18 +12,28 @@
 //
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
-#include <stdlib/extension/type_builders.hpp>   // stdlib::ref_
+#include <stdlib/extension/type_builders.hpp>   // stdlib::ext::(ref_, ptr_)
 #include <ostream>
 
 #ifndef STDLIB_NO_FIX_OF_OUTPUT_OF_IMPLICIT_WIDE_C_STRING
+#pragma push_macro( "REF_" )
+#pragma push_macro( "PTR_" )
+#undef REF_
+#define REF_ ::stdlib::ext::ref_
+#undef PTR_
+#define PTR_ ::stdlib::ext::ptr_
+
     namespace std {
 
         inline auto operator<< (
-            stdlib::ref_<basic_ostream<wchar_t, char_traits<wchar_t>>>  stream,
-            const stdlib::ptr_<const wchar_t>                           s
+            REF_<basic_ostream<wchar_t, char_traits<wchar_t>>>  stream,
+            const PTR_<const wchar_t>                           s
             )
-            -> stdlib::ref_<basic_ostream<wchar_t, char_traits<wchar_t>>>
+            -> stdlib::ext::ref_<basic_ostream<wchar_t, char_traits<wchar_t>>>
         { return stream.write( s, char_traits<wchar_t>::length( s ) ); }
 
     }  // namespace std
+
+#pragma pop_macro( "PTR_" )
+#pragma pop_macro( "REF_" )
 #endif

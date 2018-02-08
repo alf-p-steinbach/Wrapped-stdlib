@@ -14,7 +14,7 @@
 #include <string>
 #include <utility>          // std::move
 
-namespace stdlib{
+namespace stdlib{ namespace ext{
     using std::move;
     using std::string;
     using std::wstring;
@@ -41,4 +41,4 @@ namespace stdlib{
         -> string
     { return char_path_with_substitution( false, move( long_utf8_path ) ); }
 
-}  // namespace stdlib
+}}  // namespace stdlib::ext

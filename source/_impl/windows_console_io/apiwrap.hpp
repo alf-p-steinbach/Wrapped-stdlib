@@ -13,6 +13,7 @@
 namespace stdlib{ namespace impl{ namespace apiwrap{
     using std::equal;
     using std::remove;
+    using namespace stdlib::ext;
 
     //inline auto input_stream_handle()
     //    -> winapi::Handle
@@ -76,14 +77,15 @@ namespace stdlib{ namespace impl{ namespace apiwrap{
     {
         winapi::DWord n_read = 0;
         const bool success = !!winapi::ReadConsoleW(
-            console_input_handle(), buffer, buffer_size, &n_read, nullptr
+            console_input_handle(),
+            buffer, static_cast<winapi::DWord>( buffer_size ), &n_read, nullptr
             );
         if( !success )
         {
             return 0;
         }
         const auto end = remove( buffer, buffer + n_read, L'\r' );
-        const int n = end - buffer;
+        const Size n = end - buffer;
         static const raw_array_of_<2, wchar_t> eot_line = { wchar_t( ascii::end_of_text ), L'\n' };
         return (n == 2 and equal( buffer, buffer + 2, eot_line )? 0 : n);
     }
@@ -94,7 +96,8 @@ namespace stdlib{ namespace impl{ namespace apiwrap{
     {
         winapi::DWord n = 0;
         const bool success = !!winapi::WriteConsoleW(
-            console_output_handle(), buffer, buffer_size, &n, nullptr
+            console_output_handle(),
+            buffer, static_cast<winapi::DWord>( buffer_size ), &n, nullptr
             );
         if( !success )
         {

@@ -7,7 +7,7 @@
 #include <stddef.h>     // ptrdiff_t, size_t
 #include <cstddef>
 
-namespace stdlib{
+namespace stdlib{ namespace ext{
 
     using Size              = ptrdiff_t;
     using Index             = Size;
@@ -15,4 +15,4 @@ namespace stdlib{
     using U_size            = size_t;
     using U_index           = U_size;
 
-}  // namespace stdlib
+}}  // namespace stdlib::ext

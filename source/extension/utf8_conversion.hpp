@@ -12,13 +12,10 @@
 #include <stdlib/extension/Size.hpp>                    // Size, Index
 #include <stdlib/fix/msvc_named_boolean_operators.hpp>  // or
 
-namespace stdlib {
+namespace stdlib{ namespace ext{
     using std::min;
     using std::string;
     using std::wstring;
-    using stdlib::Streaming_byte_to_wide_converter;
-    using stdlib::Streaming_wide_to_byte_converter;
-    using stdlib::Size;
 
     inline auto utf8_from( const wstring& s )
         -> string
@@ -29,7 +26,7 @@ namespace stdlib {
         const Size n = s.length();
         for( Index read_pos = 0; read_pos < n or converter.n_buffered() > 0; )
         {
-            char out_buffer[impl::converter_buffer_size];
+            char out_buffer[stdlib::impl::converter_buffer_size];
             const Size max_n_bytes = array_size( out_buffer );
 
             const Size n_available_wchars = n - read_pos;
@@ -55,7 +52,7 @@ namespace stdlib {
         const Size n = s.length();
         for( Index read_pos = 0; read_pos < n or converter.n_buffered() > 0; )
         {
-            wchar_t out_buffer[impl::converter_buffer_size];
+            wchar_t out_buffer[stdlib::impl::converter_buffer_size];
             const Size max_n_wchars = array_size( out_buffer );
 
             const Size n_available_bytes = n - read_pos;
@@ -71,4 +68,4 @@ namespace stdlib {
         }
         return result;
     }
-}  // namespace cppx
+}}  // namespace stdlib::ext

@@ -14,7 +14,7 @@
 #include <stdlib/extension/type_builders.hpp>   // stdlib::(ptr_, raw_array_of_)
 #include <stdlib/_impl/converter_buffer_size.hpp>
 
-namespace stdlib{
+namespace stdlib{ namespace ext{
     using std::begin;
     using std::copy;
     using std::end;
@@ -22,7 +22,7 @@ namespace stdlib{
     class Streaming_byte_to_wide_converter
     {
     public:
-        static constexpr Size in_buf_size = impl::converter_buffer_size;
+        static constexpr Size in_buf_size = stdlib::impl::converter_buffer_size;
 
     private:
         Codecvt                             codecvt_{};
@@ -101,4 +101,4 @@ namespace stdlib{
         }
     };
 
-}  // namespace stdlib
+}}  // namespace stdlib::ext

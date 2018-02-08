@@ -4,7 +4,7 @@
 
 #include <stdlib/extension/STDLIB_SYSTEM_BYTE_ORDER.hpp>
 
-namespace stdlib {
+namespace stdlib{ namespace ext{
     struct Byte_order
     {
         enum Enum
@@ -20,4 +20,4 @@ namespace stdlib {
         -> Byte_order::Enum
     { return static_cast<Byte_order::Enum>( STDLIB_SYSTEM_BYTE_ORDER ); }
 
-}  // namespace stdlib
+}}  // namespace stdlib::ext

@@ -7,7 +7,7 @@
 #include <codecvt>                              // std::codecvt_utf8
 #include <stdlib/extension/Byte_order.hpp>      // stdlib::system_byte_order()
 
-namespace stdlib{
+namespace stdlib{ namespace ext{
     using std::codecvt_mode;
     using std::codecvt_utf8_utf16;
     using std::little_endian;       // A value of bits enumeration std::codecvt_enum.
@@ -20,4 +20,4 @@ namespace stdlib{
     using Codecvt_result    = decltype( Codecvt::ok );      // enum
     using Codecvt_state     = Codecvt::state_type;          // enum
 
-}  // namespace stdlib
+}}  // namespace stdlib::ext

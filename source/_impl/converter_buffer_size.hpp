@@ -6,6 +6,7 @@
 #include <stdlib/extension/Size.hpp>        // stdlib::(Size, Index)
 
 namespace stdlib{ namespace impl{
+    using ext::Size;
 
     Size const  converter_buffer_size = 2048;       // Large enough for efficiency.
 

@@ -9,8 +9,8 @@
 #include <array>        // std::array
 #include <type_traits>  // std::(make_*, add_*, remove_*)
 
-namespace stdlib{
-    inline namespace type_builders {
+namespace stdlib{ namespace ext{
+    namespace impl {
         using std::add_const_t;
         using std::array;
         using std::make_signed_t;
@@ -81,5 +81,24 @@ namespace stdlib{
         template< class Some_type >
         using unconst_ = std::remove_const_t< Some_type >;
 
+    }  // namespace impl
+
+    inline namespace type_builders {
+        using impl::type_;
+        using impl::ref_;
+        using impl::ptr_;
+        using impl::unref_;
+        using impl::unptr_;
+        using impl::temp_ref_;
+        using impl::forwarding_ref_;
+        using impl::array_of_;
+        using impl::raw_array_;
+        using impl::raw_array_of_;
+        using impl::array_item_type_of_;
+        using impl::signed_;
+        using impl::const_;
+        using impl::unsigned_;
+        using impl::unconst_;
     }  // inline namespace type_builders
-} // namespace stdlib
+}} // namespace stdlib::ext
+

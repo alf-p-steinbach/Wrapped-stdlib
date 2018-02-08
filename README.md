@@ -1,6 +1,6 @@
+![icon](images/icon/stdlib-icon.25-pct.png)
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-*Contents:*
 
 - [About *stdlib*.](#about-stdlib)
 - [How to install and use *stdlib* – a short intro.](#how-to-install-and-use-stdlib--a-short-intro)

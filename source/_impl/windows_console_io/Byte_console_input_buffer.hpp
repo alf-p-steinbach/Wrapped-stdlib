@@ -26,14 +26,15 @@ namespace stdlib{ namespace impl{ namespace windows_console_io{
     using std::begin;
     using std::end;
     using std::min;
+    using namespace stdlib::ext;
 
     class Utf8_line_input
     {
         static constexpr Size in_buffer_size = general_buffer_size;
 
         array_of_<in_buffer_size, wchar_t>  in_buffer_;
-        int                                 read_pos_   = 0;
-        int                                 length_     = 0;
+        Size                                read_pos_   = 0;
+        Size                                length_     = 0;
         Streaming_wide_to_byte_converter    converter_;
 
         auto n_available_chars() const { return length_ - read_pos_; }

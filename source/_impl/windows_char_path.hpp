@@ -17,17 +17,19 @@
 #include <stdlib/extension/char_path.declarations.hpp>
 
 #include <stdlib/_impl/windows_char_path/api.hpp>// stdlib::impl:winapi::*
-#include <stdlib/extension/ascii.hpp>                   // stdlib::ascii::contains_all
-#include <stdlib/extension/hopefully_and_fail.hpp>      // stdlib::(hopefully, fail)
-#include <stdlib/extension/type_builders.hpp>           // stdlib::(ref_)
-#include <stdlib/extension/utf8_conversion.hpp>         // stdlib::(utf8_from, wide_from_utf8)
+#include <stdlib/extension/ascii.hpp>                   // stdlib::ext::ascii::contains_all
+#include <stdlib/extension/hopefully_and_fail.hpp>      // stdlib::ext::(hopefully, fail)
+#include <stdlib/extension/type_builders.hpp>           // stdlib::ext::(ref_)
+#include <stdlib/extension/utf8_conversion.hpp>         // stdlib::ext::(utf8_from, wide_from_utf8)
 
-namespace stdlib{
+namespace stdlib{ namespace ext{
     using std::string;
     using std::wstring;
     using namespace std::literals;
 
     namespace impl {
+        using namespace ext;
+
         inline auto is_pseudo_path_item( ptr_<const wchar_t> name )
             -> bool
         {
@@ -70,21 +72,21 @@ namespace stdlib{
             noexcept
             -> Possibly_empty_string
         {
-            namespace w = impl::winapi;
+            namespace w = stdlib::impl::winapi;
             assert( item_len > 0 );
 
             string result( item_len, '\0' );
             w::Bool used_substitution = false;
-            int const n_bytes = w::WideCharToMultiByte(
-                w::cp_acp,                  // CodePage
-                w::wc_no_best_fit_chars,    // dwFlags
-                item,                         // lpWideCharStr
-                item_len,                     // cchWideChar,
-                &result[0],                 // lpMultiByteStr
-                result.size(),              // cbMultiByte
-                &ascii::bad_char,           // lpDefaultChar
-                &used_substitution          // lpUsedDefaultChar
-                );
+            Size const n_bytes = static_cast<Size>( w::WideCharToMultiByte(
+                w::cp_acp,                          // CodePage
+                w::wc_no_best_fit_chars,            // dwFlags
+                item,                               // lpWideCharStr
+                static_cast<int>( item_len ),       // cchWideChar,
+                &result[0],                         // lpMultiByteStr
+                static_cast<int>( result.size() ),  // cbMultiByte
+                &ascii::bad_char,                   // lpDefaultChar
+                &used_substitution                  // lpUsedDefaultChar
+                ) );
 
             if( n_bytes == 0 or used_substitution and not substitution_allowed )
             {
@@ -108,11 +110,11 @@ namespace stdlib{
             noexcept
             -> Possibly_empty_wstring
         {
-            if( impl::is_pseudo_path_item( last_item ) )
+            if( is_pseudo_path_item( last_item ) )
             {
                 return {};
             }
-            namespace w = impl::winapi;
+            namespace w = stdlib::impl::winapi;
             w::Win32_find_data info{};
             w::Handle const h = w::FindFirstFileW( path, &info );
             w::FindClose( h );
@@ -146,17 +148,17 @@ namespace stdlib{
                 {
                     result += p;
                 }
-                else if( const auto ansi = impl::ansi_from( p, n, false ) )
+                else if( const auto ansi = ansi_from( p, n, false ) )
                 {
                     result.append( ansi.value.begin(), ansi.value.end() );
                 }
-                else if( const auto alt = impl::alternate_name( &long_path[0], p ))
+                else if( const auto alt = alternate_name( &long_path[0], p ))
                 {
                     result += alt.value;
                 }
                 else if( substitution_allowed )
                 {
-                    const auto rough_ansi = impl::ansi_from( p, n, true );
+                    const auto rough_ansi = ansi_from( p, n, true );
                     assert( rough_ansi.value.length() > 0 );
                     result.append( rough_ansi.value.begin(), rough_ansi.value.end() );
                 }
@@ -194,4 +196,5 @@ namespace stdlib{
         return string( ws.begin(), ws.end() );
     }
 
-}  // namespace stdlib
+}}  // namespace stdlib::ext
+

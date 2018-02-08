@@ -16,7 +16,7 @@
 
 #define STDLIB_ARRAY_SIZE( a ) ::stdlib::Array_size_<std::remove_reference_t<decltype(a)>>::value
 
-namespace stdlib{
+namespace stdlib{ namespace ext{
     using std::begin;
     using std::bitset;
     using std::distance;
@@ -46,10 +46,16 @@ namespace stdlib{
     // As of C++14 this won't be constexpr for an argument that is a formal
     // argument of the calling function. This is the same issue as with
     // C++17 std::size, at least in clang ATTOW. Hence the macro given above.
+
+    template< class Result, class Type >
+    constexpr inline auto array_size_( Type const& a )
+        -> Result
+    { return static_cast<Result>( Array_size_<remove_reference_t<decltype(a)>>::value ); }
+
     template< class Type >
     constexpr inline auto array_size( Type const& a )
         -> Size
-    { return Array_size_<remove_reference_t<decltype(a)>>::value; }
+    { return array_size_<Size>( a ); }
 
     template< class Collection >
     auto n_items_of( Collection const& c )
@@ -61,4 +67,4 @@ namespace stdlib{
         -> Size
     { return bits.count(); }
 
-}  // namespace stdlib
+}}  // namespace stdlib::ext

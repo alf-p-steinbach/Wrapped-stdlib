@@ -15,10 +15,18 @@
 #   pragma warning( disable: 4646 ) // 'noreturn' function has non-void return type.
 #endif
 
-namespace stdlib {
-    inline namespace hopefully_and_fail {
+namespace stdlib{ namespace ext{
+    namespace impl {
         using std::string;
         using std::runtime_error;
+
+        struct Success{};
+        struct Failure{};
+
+        template< class Value >
+        auto operator>>( Value const& v, Failure )
+            -> bool
+        { return not (v >> Success{}); }
 
         inline auto hopefully( const bool condition )
             -> bool
@@ -27,6 +35,14 @@ namespace stdlib {
         inline STDLIB_NORETURN auto fail( ref_<const string> message )
             -> bool
         { throw runtime_error( message ); }
+    }  // namespace impl
 
+    inline namespace hopefully_and_fail {
+        using impl::Success;
+        using impl::Failure;
+        using impl::operator>>;
+        using impl::hopefully;
+        using impl::fail;
     }  // inline namespace hopefully_and_fail
-}  // namespace ppp_ex
+
+}}  // namespace stdlib::ext

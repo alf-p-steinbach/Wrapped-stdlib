@@ -10,7 +10,7 @@
 #include <stdlib/fix/math_constants_availability.hpp>
 
 #ifndef STDLIB_NO_MATH_CONSTANTS
-namespace stdlib{
+namespace stdlib{ namespace ext{
     inline namespace math {
         const auto e                = M_E;              // e              2.71828182845904523536
         const auto log2e            = M_LOG2E;          // log2(e)        1.44269504088896340736
@@ -26,5 +26,5 @@ namespace stdlib{
         const auto sqrt2            = M_SQRT2;          // sqrt(2)        1.41421356237309504880
         const auto inv_sqrt2        = M_SQRT1_2;        // 1/sqrt(2)      0.707106781186547524401
     }  // namespace math                                // 
-}  // namespace stdlib
+}}  // namespace stdlib::ext
 #endif
