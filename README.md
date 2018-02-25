@@ -17,7 +17,7 @@ About *stdlib*.
 
 **Short version**:
 
-It’s the C++ standard library with UTF-8 console i/o in Windows, other crucial fixes, and functional area headers.
+It’s your C++ standard library with UTF-8 console i/o in Windows, other crucial fixes, and functional area headers.
 
 ---
 
