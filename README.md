@@ -2,12 +2,13 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [About Wrapped stdlib.](#about-stdlib)
-- [How to install and use Wrapped stdlib – a short intro.](#how-to-install-and-use-stdlib--a-short-intro)
-- [How to use Wrapped stdlib fixes with existing code.](#how-to-use-stdlib-fixes-with-existing-code)
-- [Background, goal &amp; degree of goal achievement.](#background-goal--degree-of-goal-achievement)
-- [About the library name Wrapped stdlib.](#about-the-library-name-stdlib)
-- [How can you benefit from Wrapped stdlib?](#how-can-you-benefit-from-stdlib)
+
+- [About Wrapped stdlib.](#about-wrapped-stdlib)
+- [How to install and use Wrapped stdlib – a short intro.](#how-to-install-and-use-wrapped-stdlib--a-short-intro)
+- [How to use Wrapped stdlib fixes with existing code.](#how-to-use-wrapped-stdlib-fixes-with-existing-code)
+- [Background, goal &amp; degree of goal achievement.](#background-goal-amp-degree-of-goal-achievement)
+- [About the library name Wrapped stdlib.](#about-the-library-name-wrapped-stdlib)
+- [How can you benefit from Wrapped stdlib?](#how-can-you-benefit-from-wrapped-stdlib)
 - [License.](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
