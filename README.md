@@ -1,18 +1,18 @@
-![icon](images/icon/stdlib-icon.25-pct.png)
+![icon](images/icon/wrapped-stdlib-icon.25-pct.png)
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [About *stdlib*.](#about-stdlib)
-- [How to install and use *stdlib* – a short intro.](#how-to-install-and-use-stdlib--a-short-intro)
-- [How to use *stdlib* fixes with existing code.](#how-to-use-stdlib-fixes-with-existing-code)
+- [About Wrapped stdlib.](#about-stdlib)
+- [How to install and use Wrapped stdlib – a short intro.](#how-to-install-and-use-stdlib--a-short-intro)
+- [How to use Wrapped stdlib fixes with existing code.](#how-to-use-stdlib-fixes-with-existing-code)
 - [Background, goal &amp; degree of goal achievement.](#background-goal--degree-of-goal-achievement)
-- [About the library name *stdlib*.](#about-the-library-name-stdlib)
-- [How can you benefit from *stdlib*?](#how-can-you-benefit-from-stdlib)
+- [About the library name Wrapped stdlib.](#about-the-library-name-stdlib)
+- [How can you benefit from Wrapped stdlib?](#how-can-you-benefit-from-stdlib)
 - [License.](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-About *stdlib*.
+About Wrapped stdlib.
 ---------------------
 
 **Short version**:
@@ -23,7 +23,7 @@ It’s your C++ standard library with UTF-8 console i/o in Windows, other crucia
 
 **TLDR**:
 
-*stdlib* is a pure header library that provides
+Wrapped stdlib is a pure header library that provides
 
 * ***fixes***  
   for some standard library issues, including that `<stdlib/fix/console_io.hpp>` makes Windows console i/o work for international text such as Norwegian “blåbærsyltetøy” (more precisely the *Basic Multilingual Plane* of Unicode is supported for the iostreams objects such as `cout`), with narrow text encoded as UTF-8;
@@ -46,7 +46,7 @@ The UTF-8 console i/o functionality in Windows is a portable iostreams buffer im
 
 Other fixes & nice-to-have’s include • support for *de facto* standard `<math.h>` constants such as `M_PI`; • support for the C++ standard’s alternative keywords such as `and`, `or` and `not`, in Visual C++; • random seed for C++11 random number generation with g++; • support for output of something that converts implicitly to `wchar const*`, on a wide stream, corresponding to how something that converts implicitly to `char const*` can be output on a narrow stream; • setting the default locale in C and C++ to the user’s native locale, which makes the wide iostreams work for international text in \*nix-land; • setting UTF-8 as the basic execution character set (i.e. for narrow literals) in Visual C++; and just because it’s nice to have in a portable way, • support for ANSI escape sequences, e.g. to produce colored console text or move the text cursor on the screen, in Windows 10 and later.
 
-How to install and use *stdlib* – a short intro.
+How to install and use Wrapped stdlib – a short intro.
 --------------------------------------------------
 
 1. Download or clone the library.
@@ -95,7 +95,7 @@ In this source code
 
 * The set intersection symbol “∩” at the end of the comment is a convention that ***helps ensure UTF-8 source encoding***. It causes some editors that otherwise would have chosen some ungood encoding, to either (e.g. in the case Visual Studio) prompt you about whether to save as Unicode, or to (e.g. in the case of Notepad++) translate the “∩” to some similar looking character such as “n”. And that can reveal an ungood choice of encoding to you.
 
-* `<stdlib/iostream.hpp>` instead of just `<iostream>` adds the general *stdlib* fixes, in particular UTF-8 console i/o in Windows.
+* `<stdlib/iostream.hpp>` instead of just `<iostream>` adds the general Wrapped stdlib fixes, in particular UTF-8 console i/o in Windows.
 
 * `u8` at the front of `u8"Every`…, explicitly requests UTF-8 encoding of this string’s data in the executable. With g++ that’s the default, but still worth testing because g++ does not validate the bytes. If this produces garbage output with g++ then the source encoding is probably not UTF-8. Note: still with all OK, on a Western PC the Chinese glyphs are likely to be *presented* as squares, because most likely the console’s font doesn’t have these glyphs.
 
@@ -113,7 +113,7 @@ I added green coloration of the screenshot to identify the typed commands as suc
    Wow!  
    *Yesss*!
 
-How to use *stdlib* fixes with existing code.
+How to use Wrapped stdlib fixes with existing code.
 ---------------------------------------------
 
 Say you have some existing code using the C++ standard library, like this (hypothetical) textbook example program:
@@ -154,7 +154,7 @@ Pleased to meet you, Pål ??????? Jorgen Sæther!
 
 ![Winnie the pooh](images/personalized_greeting.take_1.colorized.annotated.png)
 
-You can apply the *stdlib* console i/o fix just by including the `<stdlib/fix/console_io.hpp>` header. And you can do that in the compiler invocation, as a **forced include**. I.e. there’s no need to edit the existing source code.
+You can apply the Wrapped stdlib console i/o fix just by including the `<stdlib/fix/console_io.hpp>` header. And you can do that in the compiler invocation, as a **forced include**. I.e. there’s no need to edit the existing source code.
 
 With g++ the `-include` option gives a forced include (with MSVC the corresponding option is `/FI`):
 
@@ -182,9 +182,9 @@ Yay! Old programs good as new!
 
 Background, goal &amp; degree of goal achievement.
 ----
-Two C++ infra-structure developments have made *stdlib*’s “always UTF-8” a practical, instead of just an idealistic, choice:
+Two C++ infra-structure developments have made Wrapped stdlib’s “always UTF-8” a practical, instead of just an idealistic, choice:
 
-* The upcoming C++17 *filesystem* library, part of the C++17 standard library, lets you open or create or remove files via UTF-8 encoded `char` based filenames. This complements *stdlib* in a great way. *stdlib* therefore provides access to *filesystem* already with Visual C++ 2017 and later, and with recent g++ versions, as well as any C++ implementation that supports C++17 and later.
+* The upcoming C++17 *filesystem* library, part of the C++17 standard library, lets you open or create or remove files via UTF-8 encoded `char` based filenames. This complements Wrapped stdlib in a great way. Wrapped stdlib therefore provides access to *filesystem* already with Visual C++ 2017 and later, and with recent g++ versions, as well as any C++ implementation that supports C++17 and later.
 
 * Visual C++, the main compiler on the Windows platform, now supports UTF-8 as the execution character set, i.e. for ordinary `char` based literals.
 
@@ -194,7 +194,7 @@ However, Visual C++ 2017 and the current MinGW g++ compiler’s UTF-8 execution 
 
 The main goal is to enable learners and professionals who write small tool or exploratory programs, to be able to do that simply, and have those programs work with international text.
 
-Here’s the earlier example expressed *stdlib* style:
+Here’s the earlier example expressed Wrapped stdlib style:
 
 ```c++
 // Source encoding: utf-8 with BOM ∩
@@ -213,9 +213,9 @@ auto main()
 
 This same code works in both \*nix-land and Windows, when the name input by the user contains non-English characters such as in the name “Pål Аркадий Jørgen Sæther”.
 
-For this program the most convenient is to use *stdlib* headers, but as shown you can also use standard C++ only textbook code as-is, with working handling of international text in Windows, by including `<stdlib/fix/console_io.hpp>` e.g. via a forced include.
+For this program the most convenient is to use Wrapped stdlib headers, but as shown you can also use standard C++ only textbook code as-is, with working handling of international text in Windows, by including `<stdlib/fix/console_io.hpp>` e.g. via a forced include.
 
-However, *stdlib* doesn’t fix the not-working-in-Windows `main` arguments (because I found no reliable way to do that). But *stdlib* provides an alternative, namely two UTF-8 based classes called `Command_line_args` and `Command_argv_array`. The former is for usual command line argument access, and the latter is a convenience wrapper for e.g. use of [`getopt`](https://www.gnu.org/software/libc/manual/html_node/Getopt.html).
+However, Wrapped stdlib doesn’t fix the not-working-in-Windows `main` arguments (because I found no reliable way to do that). But Wrapped stdlib provides an alternative, namely two UTF-8 based classes called `Command_line_args` and `Command_argv_array`. The former is for usual command line argument access, and the latter is a convenience wrapper for e.g. use of [`getopt`](https://www.gnu.org/software/libc/manual/html_node/Getopt.html).
 
 ```c++
 // Source encoding: utf-8 with BOM ∩
@@ -235,7 +235,7 @@ auto main()
 }
 ```
 
-For this program explicit use of *stdlib* or some other supporting library, in the source code, isn’t just a convenience but necessary.
+For this program explicit use of Wrapped stdlib or some other supporting library, in the source code, isn’t just a convenience but necessary.
 
 As of July 2017 `Command_line_args` default construction is supported for Windows and Linux, the two platforms that I had available for testing. On most other platforms the `main` arguments can be used as-is in platform-specific code. Portable code may adapt portably to the platform by using the `Command_line_args::from_os_or_else_from` factory function, where portability is gained at the cost of required access to the `main` arguments:
 
@@ -262,23 +262,23 @@ auto main( const int n, const ptr_<ptr_<char>> arg_pointers )
 { my::cppmain( Command_line_args::from_os_or_else_from( n, arg_pointers ) ); }
 ```
 
-About the library name *stdlib*.
+About the library name Wrapped stdlib.
 ---------------
 
-*stdlib* started as a folder in the source tree of another project, where it was named for what it contained: access to the C++ standard library with necessary fixes applied, and nothing else.
+Wrapped stdlib started as a folder called *stdlib* in the source tree of another project, where it was named for what it then contained: access to the C++ standard library with necessary fixes applied, and nothing else.
 
-It would be much work to change the name, and it fits (the library doesn't provide much more than just what a more practically usable definition and implementation of the C++ standard library would), so I kept it.
+Originally I therefore called also the GitHub project *stdlib*, reckoning that it would be too much work to change the name. However, by writing about it I realized that the name was much more misleading to novices than I’d thought. So I changed it to the more descriptive “Wrapped stdlib”.
 
-C++ programmers are generally quite intelligent and have to deal with multiple meanings of terms all the time, so there’s little or no risk of confusion. But I think the name can possibly lead to discussion among beginners. So, to be more precise than the in-short explanation at the beginning of this document: *stdlib* is a convenient way to access the implementation of the C++ standard library that your compiler provides, with a number of fixes applied, and with functional area headers.
+In the C++ code the original name *stdlib* still lingers, as e.g. the name of the main namespace for this code.
 
-How can you benefit from *stdlib*?
+How can you benefit from Wrapped stdlib?
 ------------------------------------------------------
 
-* Command line tools built with *stdlib* can handle general Unicode text in Windows, which is likely to improve productivity,
+* Command line tools built with Wrapped stdlib can handle general Unicode text in Windows, which is likely to improve productivity,
 * the functional area headers means there are fewer headers to include and possibly forget to include in your source code, e.g. just using `<stdlib/all/basics.hpp>` instead of direct use of (a large number of C++ standard library headers including) `<string>`, `<vector>`, `<stdlib.h>`, `<stdexcept>`, `<iostream>`, `<iomanip` etc. etc.,
-* *stdlib*, or an equivalent library, reduces or eliminates portability problems due to e.g. referring unqualified to `printf` after only including `<cstdio>`,
+* Wrapped stdlib, or an equivalent library, reduces or eliminates portability problems due to e.g. referring unqualified to `printf` after only including `<cstdio>`,
 * the functional area headers also support use of a precompiled header to speed up builds, with `<stdlib/all/of_it.hpp>` playing the rôle of g++’s `<bits/stdc++.h>`, and
-* *stdlib* is a single point of indirection where you can centralize all your fixes of problems with various C++ standard library implementations, and where such fixes can be provided in new versions of the library.
+* Wrapped stdlib is a single point of indirection where you can centralize all your fixes of problems with various C++ standard library implementations, and where such fixes can be provided in new versions of the library.
 
 Also, it’s nice to have portable code where ordinary `char` based international text console i/o works in Windows.
 

@@ -36,10 +36,10 @@
 #define STDLIB_HAS_CPP17_FEATURES \
     (STDLIB_COMPILER_SUPPORTS_CPP17 || STDLIB_USE_EXPERIMENTAL_CPP17)
 
-namespace stdlib{ namespace platform{
+namespace stdlib{ namespace ext{ namespace platform{
 #ifdef _WIN32
     constexpr bool is_windows = true;
 #else
     constexpr bool is_windows = false;
 #endif
-}}  // namespace stdlib::platform
+}}}  // namespace stdlibx::ext::platform
