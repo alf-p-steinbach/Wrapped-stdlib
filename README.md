@@ -274,16 +274,17 @@ In the C++ code the original name *stdlib* still lingers, as e.g. the name of th
 
 How can you benefit from Wrapped stdlib?
 ------------------------------------------------------
+ Wrapped stdlib is likely to improve your productivity because
 
-* Command line tools built with Wrapped stdlib can handle general Unicode text in Windows, which is likely to improve productivity,
-* the functional area headers means there are fewer headers to include and possibly forget to include in your source code, e.g. just using `<stdlib/all/basics.hpp>` instead of direct use of (a large number of C++ standard library headers including) `<string>`, `<vector>`, `<stdlib.h>`, `<stdexcept>`, `<iostream>`, `<iomanip` etc. etc.,
-* Wrapped stdlib, or an equivalent library, reduces or eliminates portability problems due to e.g. referring unqualified to `printf` after only including `<cstdio>`,
-* the functional area headers also support use of a precompiled header to speed up builds, with `<stdlib/all/of_it.hpp>` playing the rôle of g++’s `<bits/stdc++.h>`, and
-* Wrapped stdlib is a single point of indirection where you can centralize all your fixes of problems with various C++ standard library implementations, and where such fixes can be provided in new versions of the library.
+* command line tools built with Wrapped stdlib can handle general Unicode text in Windows,
+* the functional area headers mean there are far fewer headers to include,
+* without Wrapped stdlib, or an equivalent library, there can be portability problems due to e.g. referring unqualified to `printf` after only including `<cstdio>`,
+* the functional area headers, in particular `<stdlib/all/of_it.hpp>`, support use of a precompiled header to speed up builds, and
+* you can centralize all your fixes of problems with various C++ standard library implementations.
 
 Also, it’s nice to have portable code where ordinary `char` based international text console i/o works in Windows.
 
-And hey, ANSI escape sequences, cool. :smiley:
+And hey, ANSI escape sequences in consoles, cool. :smiley:
 
 License.
 -----------
