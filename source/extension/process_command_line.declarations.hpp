@@ -37,10 +37,11 @@ namespace stdlib{ namespace ext{ namespace process{
         vector<string>      items_;
 
     public:
+        auto size() const -> Size { return items_.size(); }
         auto begin() const  { return items_.begin(); }
         auto end() const    { return items_.end(); }
 
-        auto size() const -> Size { return items_.size(); }
+        auto count() const -> Size { return size(); }
 
         auto operator[]( Index const i ) const
             -> ref_<const string>
