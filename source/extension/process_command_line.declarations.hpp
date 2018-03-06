@@ -41,7 +41,7 @@ namespace stdlib{ namespace ext{ namespace process{
         auto begin() const  { return items_.begin(); }
         auto end() const    { return items_.end(); }
 
-        auto count() const -> Size { return size(); }
+        auto count() const -> Size { return size() - 1; }       // Args after verb.
 
         auto operator[]( Index const i ) const
             -> ref_<const string>
