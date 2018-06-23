@@ -2,7 +2,7 @@
 // #include <stdlib/_impl/windows_short_path/apiwrap.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
-#include <stdlib/extension/Size.hpp>                    // stdlib::(Size, array_size)
+#include <stdlib/extension/size_functions.hpp>          // stdlib::(Size, array_size)
 #include <stdlib/_impl/windows_short_path/api.hpp>      // ...winapi::(DWord, max_path_length, ...)
 
 #include <string>       // std::wstring

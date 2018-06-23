@@ -2,7 +2,7 @@
 // #include <stdlib/extension/windows_command_line.declarations.hpp>
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
-#include <stdlib/extension/Size_types_only.hpp>         // stdlib::(Size, Index)
+#include <stdlib/extension/Size_types.hpp>              // stdlib::(Size, Index)
 #include <stdlib/extension/type_builders.hpp>           // stdlib::ref_
 #include <stdlib/extension/version.hpp>                 // stdlib::platform::is_windows
 

@@ -10,6 +10,6 @@
 #include <stdlib/functional.hpp>                        // std::(function, invoke)
 
 #include <stdlib/extension/hopefully_and_fail.hpp>      // stdlib::ext::(hopefully, fail)
-#include <stdlib/extension/Size.hpp>                    // stdlib::ext::(Index, Size)
+#include <stdlib/extension/size_functions.hpp>          // stdlib::ext::(Index, Size)
 #include <stdlib/extension/type_builders.hpp>           // stdlib::ext::(ref_, ptr_, ...)
 #include <stdlib/extension/process_command_line.hpp>    // stdlib::ext::(Command_line_args, Command_argv_array)

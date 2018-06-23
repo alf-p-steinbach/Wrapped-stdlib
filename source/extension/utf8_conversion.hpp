@@ -9,7 +9,7 @@
 #include <stdlib/_impl/converter_buffer_size.hpp>
 #include <stdlib/extension/Streaming_byte_to_wide_converter.hpp>
 #include <stdlib/extension/Streaming_wide_to_byte_converter.hpp>
-#include <stdlib/extension/Size.hpp>                    // Size, Index
+#include <stdlib/extension/size_functions.hpp>                    // Size, Index
 #include <stdlib/fix/msvc_named_boolean_operators.hpp>  // or
 
 namespace stdlib{ namespace ext{

@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: utf-8 with BOM ∩
-// #include <stdlib/extension/Size.hpp>
+// #include <stdlib/extension/size_functions.hpp>
 //
 // Size types and signed result size functions.
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
@@ -11,7 +11,7 @@
 #include <iterator>         // std::distance
 #include <type_traits>      // std::remove_reference_t
 #include <utility>          // std::(begin, end)
-#include <stdlib/extension/Size_types_only.hpp>     // size_t, ptrdiff_t, Size, Index
+#include <stdlib/extension/Size_types.hpp>          // size_t, ptrdiff_t, Size, Index
 #include <stdlib/extension/type_builders.hpp>       // stdlib::(array_of_, raw_array_of_)
 
 #define STDLIB_ARRAY_SIZE( a ) ::stdlib::Array_size_<std::remove_reference_t<decltype(a)>>::value

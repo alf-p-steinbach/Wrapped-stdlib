@@ -9,7 +9,7 @@
 
 #include <stdlib/extension/ascii.hpp>           // ascii::bad_char
 #include <stdlib/extension/Codecvt.hpp>         // stdlib::(Codecvt, Codecvt_result)
-#include <stdlib/extension/Size.hpp>            // stdlib::(Size, Index)
+#include <stdlib/extension/size_functions.hpp>            // stdlib::(Size, Index)
 #include <stdlib/extension/type_builders.hpp>   // stdlib::(ptr_, raw_array_of_)
 #include <stdlib/_impl/converter_buffer_size.hpp>
 

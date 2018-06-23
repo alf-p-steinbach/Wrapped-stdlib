@@ -4,6 +4,11 @@
 
 #include <stdlib/fix/msvc_wolfcalls_about_std_functions.hpp>
 
+#ifdef _MSC_VER
+#   undef   _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING
+#   define  _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING   1
+#endif
+
 #include <codecvt>                              // std::codecvt_utf8
 #include <stdlib/extension/Byte_order.hpp>      // stdlib::system_byte_order()
 

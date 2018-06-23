@@ -6,7 +6,7 @@
 #include <stdlib/c/stddef.hpp>    // ptrdiff_t
 
 #include <stdlib/extension/ascii.hpp>           // stdlib::ascii::end_of_text
-#include <stdlib/extension/Size.hpp>            // stdlib::(Size, Index)
+#include <stdlib/extension/size_functions.hpp>              // stdlib::(Size, Index)
 #include <stdlib/_impl/windows_console_io/api.hpp>          // winapi::*
 #include <stdlib/fix/msvc_named_boolean_operators.hpp>      // and
 

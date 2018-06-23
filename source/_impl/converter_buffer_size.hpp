@@ -3,7 +3,7 @@
 //
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
-#include <stdlib/extension/Size.hpp>        // stdlib::(Size, Index)
+#include <stdlib/extension/size_functions.hpp>      // stdlib::(Size, Index)
 
 namespace stdlib{ namespace impl{
     using ext::Size;
