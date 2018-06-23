@@ -4,3 +4,5 @@
 explore_issues
 writings
 examples/basics/personalized_greeting/greeting.py
+build/vs 2017/*
+
