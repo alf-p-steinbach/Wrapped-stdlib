@@ -11,6 +11,8 @@
 
 namespace stdlib{ namespace impl{ namespace apiwrap{
     using std::unique_ptr;
+    using namespace stdlib::ext::type_builders;
+    using namespace stdlib::ext::hopefully_and_fail;
 
     inline auto command_line_ptr()
         -> ptr_<const wchar_t>
