@@ -27,8 +27,10 @@ namespace stdlib{ namespace impl{ namespace default_c_locale{
         ~Envelope() { setlocale( LC_ALL, "C" ); }
 
         Envelope()
+            noexcept
         {
             char const* const s = setlocale( LC_ALL, "" );  assert( s != nullptr );
+            setlocale( LC_NUMERIC, "C" );
             (void) s;
             #ifdef STDLIB_DEBUG_C_LOCALE
                 fprintf( stderr, "!C locale set to \"%s\".\n", s ); fflush( stderr );

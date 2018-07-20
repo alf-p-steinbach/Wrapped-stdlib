@@ -10,21 +10,36 @@
 // Copyright © 2017 Alf P. Steinbach, distributed under Boost license 1.0.
 
 #include <stdlib/fix/default_c_locale.hpp>      // Do this first.
+#include <stdlib/extension/type_builders.hpp>
 
 #include <assert.h>
 #include <locale>
 
+#include <stdio.h>      //!
+
 namespace stdlib{ namespace impl{ namespace default_cpp_locale{
     using std::locale;
+    using std::numpunct;
+    using stdlib::ext::ptr_;
 
     class Envelope
     {
     private:
 
-        // A.k.a. `locale::classic()`.
-        ~Envelope() { locale::global( locale( "C" ) ); }
+        Envelope() noexcept
+        {
+            try
+            {
+                // The national locale supports UTF-8 in Unix-land.
+                auto const& national_using_english_numbers = 
+                    locale{ "" }.combine<numpunct<char>>( locale::classic() );
+                locale::global( national_using_english_numbers );
+            }
+            catch( ... )
+            {}
+        }
 
-        Envelope() { locale::global( locale( "" ) ); }
+        ~Envelope() noexcept { locale::global( locale( "C" ) ); }
 
     public:
         static auto make_singleton()
