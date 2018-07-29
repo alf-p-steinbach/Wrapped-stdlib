@@ -15,4 +15,9 @@ namespace stdlib{ namespace ext{
     using U_size            = size_t;
     using U_index           = U_size;
 
+    namespace basic_types
+    {
+        using ext::Size, ext::Index, ext::U_size, ext::U_index;
+    }  // namespace basic_types
+
 }}  // namespace stdlib::ext
