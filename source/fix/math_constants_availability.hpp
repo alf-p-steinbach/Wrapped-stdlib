@@ -21,6 +21,7 @@
 
 #ifndef STDLIB_NO_MATH_CONSTANTS
     #ifndef M_PI // TODO: also handle non-macro
+        #define _MATH_DEFINES_DEFINED   // Avoid MSVC redefinition warning.
         #define M_E         2.71828182845904523536          // e               
         #define M_LOG2E     1.44269504088896340736          // log2(e)         
         #define M_LOG10E    0.434294481903251827651         // log10(e)        

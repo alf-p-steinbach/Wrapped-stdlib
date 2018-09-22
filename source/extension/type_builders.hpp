@@ -39,14 +39,29 @@ namespace stdlib{ namespace ext{
         template< class Some_type >
         using ref_ = Some_type&;                // std::add_lvalue_reference_t<Some_type>;
 
-        template< class Some_type >
-        using ptr_ = Some_type*;                // std::add_pointer_t<Some_type>;
-
         template< class Some_reference_type >
         using unref_ = std::remove_reference_t<Some_reference_type>;
         
+        template< class Some_type >
+        using ptr_ = Some_type*;                // std::add_pointer_t<Some_type>;
+
         template< class Some_pointer_type >
         using unptr_ = std::remove_pointer_t<Some_pointer_type>;
+
+        template< class Integer >
+        using signed_ = std::make_signed_t< Integer >;
+
+        template< class Integer >
+        using unsigned_ = std::make_unsigned_t< Integer >;
+
+        template< class Some_type >
+        using const_ = std::add_const_t< Some_type >;
+
+        template< class Some_type >
+        using unconst_ = std::remove_const_t< Some_type >;
+
+
+        //---------------------------------------------------
 
         template< class Some_type >
         using temp_ref_ = Some_type&&;          // std::add_rvalue_reference_t<Some_type>;
@@ -64,41 +79,28 @@ namespace stdlib{ namespace ext{
         using raw_array_of_ = Item[n];
 
         template< class Some_array_type >
-        using array_item_type_of_ = remove_extent_t<Some_array_type>;
-
-
-        //---------------------------------------------------
-
-        template< class Integer >
-        using signed_ = std::make_signed_t< Integer >;
-
-        template< class Some_type >
-        using const_ = std::add_const_t< Some_type >;
-
-        template< class Integer >
-        using unsigned_ = std::make_unsigned_t< Integer >;
-
-        template< class Some_type >
-        using unconst_ = std::remove_const_t< Some_type >;
+        using item_type_of_ = remove_extent_t<Some_array_type>;
 
     }  // namespace impl
 
     inline namespace type_builders {
         using impl::type_;
+
         using impl::ref_;
-        using impl::ptr_;
         using impl::unref_;
+        using impl::ptr_;
         using impl::unptr_;
+        using impl::signed_;
+        using impl::unsigned_;
+        using impl::const_;
+        using impl::unconst_;
+
         using impl::temp_ref_;
         using impl::forwarding_ref_;
         using impl::array_of_;
         using impl::raw_array_;
         using impl::raw_array_of_;
-        using impl::array_item_type_of_;
-        using impl::signed_;
-        using impl::const_;
-        using impl::unsigned_;
-        using impl::unconst_;
+        using impl::item_type_of_;
     }  // inline namespace type_builders
 }} // namespace stdlib::ext
 
